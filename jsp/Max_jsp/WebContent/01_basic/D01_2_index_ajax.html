@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax 수업</title>
+<!-- CSS와 JS 외부에서 import하는 경우 수정했음에도 반영이 안되는 경우 발생
+	페이지 이름 뒤에 ?(임의의 문자) 추가하여 get방식의 헛점(인터셉트)를 피해 테스트
+	같은 요청건이면 브라우저가 인터셉트 : 서버에까지 전달이 안됨
+	버퍼캐시에서 저장된 정보가 그대로 출력 = 수정된 내용 반영 되지 않음 			-->
+<link rel="stylesheet" type="text/css" href="../Stylesheet/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../Stylesheet/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../Stylesheet/demo/demo.css">
+<script type="text/javascript" src="../Stylesheet/js/jquery.min.js"></script>
+<script type="text/javascript" src="../Stylesheet/js/jquery.easyui.min.js"></script>
+<!-- 네이버 자바스크립트 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  
+	<script type="text/javascript">
+
+	function login(){
+		var u_id = $("#mem_id").val();
+		var u_pw = $("#mem_pw").val();
+		
+		$.ajax({
+			method:"get"
+		   ,url:'/Login.do?mem_id='+u_id+'&mem_pw='+u_pw
+			 //loginAction.jsp페이지에서 처리된 결과 반환
+		   ,success:function(data){
+			   //alert(data);//김유신님 환영합니다.
+		   	   $("#d_login").hide();
+		   	   $("#s_name").text(data);
+			   $("#d_logout").show();
+		   }
+		});
+	}
+	
+	function logout(){
+		alert("로그아웃")
+		$("#d_login").show();
+		$("#d_logout").hide();
+	}
+	</script>
+	
+<!-- 전체 가운데 정렬 -->
+<style type="text/css">
+	#mid {
+    width:1000px;
+    margin : 0 auto ;
+}
+</style>
+
+</head>
+<body>
+<!-- 전체 가운데 정렬용 -->
+<div id ="mid">
+
+	<script type="text/javascript">
+	$(document).ready(function (){
+		$("#d_logout").hide();
+	});
+	</script>
+	
+<% 자바코드는 JSP에서만 사용 가능하다 %>
+<table width="900px" height="650px">
+	<!-- top -->
+	<tr>
+	<td width="900px" height="50px">
+		<table width="100%" height="100%" border="1" borderColor="red">
+			<tr>
+				<td align="center">Ajax Class</td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+	<!-- middle  -->
+	<tr>
+		<td width="900px" height="570px">
+			<table>
+			<tr>
+			<!-- menu -->
+				<td width="250px" height="570px">
+					<table width="100%" height="100%" border="1" borderColor="orange">
+					<tr>
+						<td align="left" valign="top">
+							<table border="1">
+							<tr>
+								<td height="20px">
+									<!-- 로그인 -->
+									<div id="d_login">
+									<table>
+									<tr><!-- 로그인 아이디 ID 텍스트 창 -->
+										<td><input class="easyui-textbox" name="mem_id" id="user_id"
+											data-options="iconCls:'icon-man', prompt:'Enter you ID'"
+											style="width: 300px"></td>
+									</tr>
+									<tr><!-- 로그인 비밀번호 PW 텍스트 창 -->
+										<td><input class="easyui-textbox" name="mem_pw" id="user_pw"
+											data-options="iconCls:'icon-lock', prompt:'Enter you PW'"
+											style="width: 300px"></td>
+									</tr>
+									<tr>
+										<td><a id="btn" href="javascript:login()" class="easyui-linkbutton"
+											data-options="width:170">Log-in</a></td>
+									</tr>
+									</table>
+									<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+									<table>
+									<tr>										
+									<!-- 네이버아디디로로그인 초기화 Script -->
+									<div id="naverIdLogin"></div>
+									<script type="text/javascript">
+										var naverLogin = new naver.LoginWithNaverId(
+											{
+												clientId: "aJRdt48vkyceRDt9cbVz",
+												callbackUrl: "http://localhost:8000/06_ajax/06_index/index_ajax.html",
+												isPopup: true, /* 팝업을 통한 연동처리 여부 */
+												loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+											}
+										);
+										/* 설정정보를 초기화하고 연동을 준비 */
+										naverLogin.init();
+									</script>
+									</tr>
+									</table>
+									</div>
+									<!-- 로그아웃 -->
+									<div id="d_logout">
+									<table>
+									<tr>
+										<td>Welcome to Ajax!!</td>
+									</tr>
+									<tr>
+										<td><a id="btn" href="javascript:logout()" class="easyui-linkbutton"
+											data-options="width:170">Log-out</a></td>
+									</tr>
+									</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="20px">메뉴1</td>
+							</tr>
+							<tr>
+								<td height="20px">메뉴2</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+				<!-- body.html 시작 -->
+				<td width="650px" height="570px">
+					<table width="100%" height="100%" border="1" borderColor="green">
+					<tr>
+						<td>콘텐츠</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<!-- bottom -->
+	<tr>
+		<td width="900px" height="30px">
+			<table width="100%" height="100%" border="1" borderColor="blue">
+				<tr>
+					<td align="center">Max million</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

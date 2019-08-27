@@ -1,0 +1,64 @@
+package seontalk.view;
+
+public class searchtest {
+	
+	public void actionPerformed(ActionEvent arg0) {
+
+		Exception ex = new Exception();
+		  boolean flag = true;
+		  try{
+		   // 입력창에 뭐든지 들어갔을 경우
+		   if(!find2.getText().equals("")){
+		    for(int i=0; i<pos; i++){
+		   // 입력값과 배열이 같을 경우
+		     if(find2.getText().contains(word[i])){
+		      result.setText("금지입니다.");
+		     flag = false; 
+		     }
+		    }
+		    if(flag){
+		     //값이 배열과 다를 경우
+		     result.setText(find2.getText() + "검색되었습니다");
+		    }       
+		   }
+		  // 입력창에 아무것도 들어가지 않을 경우.
+		   else{
+		    throw ex;
+		   }
+		  }catch(Exception e){
+		   result.setText("단어를 입력해주세요");
+		   JOptionPane.showMessageDialog(null, "경고");
+		  }
+	    try{
+	     // 입력창에 뭐든지 들어갔을 경우
+	     if(!textField.getText().equals("")){
+	      for(int i=0; i<word.length; i++){
+	       if(textField.getText().equals(word[i])){
+	        result.setText("값이 있습니다.");
+	       flag = false; 
+	       }
+	      }
+	      if(flag){
+	       //값이 배열과 다를 경우
+	       word[pos] = textField.getText();
+	       System.out.println("입력값은 : " + word[pos]); // 입력값을 알기위해
+	       ++pos;
+	       result.setText(textField.getText() + "추가되었습니다");
+	      }       
+	     }
+	     // 입력창에 아무것도 들어가지 않을 경우.
+	     else{
+	      throw ex;
+	     }
+	    }catch(Exception e){
+	     result.setText("단어를 입력해주세요");
+	     JOptionPane.showMessageDialog(null, "경고");
+	    }
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

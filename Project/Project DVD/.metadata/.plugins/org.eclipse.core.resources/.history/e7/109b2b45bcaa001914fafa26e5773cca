@@ -1,0 +1,21 @@
+package seontalk.view;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+public class MentorSearchResult extends JFrame {
+
+	public void MentorSearchResult() {
+		setBackground(new Color(255,202,158));
+		setSize(410,545);
+		setResizable(false);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		MentorSearchResult msr = new MentorSearchResult();
+
+	}
+
+}

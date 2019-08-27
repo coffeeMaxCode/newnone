@@ -1,0 +1,101 @@
+package seontalk.view;
+
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+@SuppressWarnings("serial")
+public class SearchBox extends JPanel{
+	MainPage page = null;
+
+	//버튼 초기화
+	JButton jtb_search = new JButton("Search"); 
+	//텍스트필드 초기화
+	JTextField jtf_search = new JTextField(10); 
+	//검색 콤보박스 넣을 카테고리
+	String[] category = {"ID", "Nick Name"};
+	
+	//검색결과에 보여줄 라벨들
+	JPanel jp_profile = null;
+	JLabel jlb_nick = null;
+	JLabel jlb_interest = null;
+	JLabel jlb_point = null;
+	
+	String imgName = "gude_1.png";
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public SearchBox(MainPage page){
+		this.page = page;
+		setLayout(null);
+		//콤보박스 
+		JComboBox strCombo= new JComboBox(category);
+		//검색창 / 패널 배경색 설정
+		setBackground(new Color(255,224,200));
+		//검색 결과 보여주는 부분
+		jp_profile = new ProfileImg(imgName,0,0,160,160);
+		jlb_nick = new JLabel("닉네임");
+		jlb_interest = new JLabel("분야");
+		jlb_point = new JLabel("포인트");
+		
+		//위치 설정
+		strCombo.setBounds(35, 15, 65, 20);
+		jtf_search.setBounds(105, 15, 125, 20);
+		jtb_search.setBounds(235, 15, 75, 20);
+		
+		//검색 결과 리스트
+		
+		//결과화면창 > 검색 리스트에서 팝업창으로 대체
+//		jp_profile.setBounds(80, 70, 160, 160);
+//		jlb_nick.setBounds(80, 280, 150, 20);
+//		jlb_interest.setBounds(80, 310, 150, 20);
+//		jlb_point.setBounds(80, 340, 150, 20);
+		
+		//화면 추가
+		add(jbtn_rank);
+		add(jbtn_list);
+		add(jbtn_search);
+		//콤보 박스
+		add(strCombo);
+		//검색 텍스트 박스 
+		add(jtf_search);
+		//검색 버튼
+		add(jtb_search); 
+//		//라벨
+//		add(jlb_nick);
+//		add(jlb_interest);
+//		add(jlb_point);
+//		//이미지
+//		add(jp_profile);
+		
+		//검색이벤트
+		initButton();
+	}
+
+	//버튼 이벤트 : 검색 결과 나타내기
+	public void initButton() {
+		//이전 페이지 이벤트 
+		jtb_search.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					super.mouseClicked(e);
+					//결과 패널 바꾼 후, 새로고침
+//					page.remove(page.jp_page);
+//					page.jp_page = page.jp_mentor.jp_bubble;
+//					page.add(page.jp_page);
+//					page.revalidate();
+//					page.repaint();
+			}
+		});
+		
+	}
+	
+}
+
+

@@ -1,0 +1,62 @@
+package seontalk.view;
+
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class MyBest2 extends JPanel{
+	JLabel jlb_post_mynum = null;		//게시글번호
+	JLabel jlb_post_mycategory = null; //카테고리
+	JLabel jlb_post_mytitle = null;	//글제목
+	JLabel jlb_post_mydate = null;		//작성날짜
+	JLabel jlb_post_myviews = null;//조회수
+	Theme theme = new Theme();
+
+public MyBest2(int i,MainPage page) {
+		jlb_post_mynum = new JLabel(Integer.toString(i+1)+"번", JLabel.CENTER);
+		jlb_post_mycategory = new JLabel(Integer.toString(i+1)+"카테고리", JLabel.CENTER);
+		jlb_post_mytitle= new JLabel(Integer.toString(i+1)+"번째게시물제목", JLabel.CENTER);
+		jlb_post_mydate= new JLabel(Integer.toString(i+1)+"일", JLabel.CENTER);
+		jlb_post_myviews = new JLabel(Integer.toString(i+1)+"회", JLabel.CENTER);
+		
+		
+		//////라벨 투명도
+		jlb_post_mynum.setOpaque(true);
+		jlb_post_mycategory.setOpaque(true);
+		jlb_post_mytitle.setOpaque(true);
+		jlb_post_mydate.setOpaque(true);
+		jlb_post_myviews.setOpaque(true); 
+	
+		//////라벨 배경색 설정
+			
+		jlb_post_mynum.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jlb_post_mycategory.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jlb_post_mytitle.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jlb_post_mydate.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jlb_post_myviews.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+				
+		
+		/////////입양
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+				.addComponent(jlb_post_mynum,30,30,30)
+				.addComponent(jlb_post_mycategory,70,70,70)
+				.addComponent(jlb_post_mytitle,170,170,170)
+				.addComponent(jlb_post_mydate,60,60,60)
+				.addComponent(jlb_post_myviews,50,50,50)
+			);
+			layout.setVerticalGroup(layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addComponent(jlb_post_mynum,20,20,20)
+						.addComponent(jlb_post_mycategory,20,20,20)
+						.addComponent(jlb_post_mytitle,20,20,20)
+						.addComponent(jlb_post_mydate,20,20,20)
+						.addComponent(jlb_post_myviews,20,20,20)
+			
+			)
+		);
+		
+
+	}
+}

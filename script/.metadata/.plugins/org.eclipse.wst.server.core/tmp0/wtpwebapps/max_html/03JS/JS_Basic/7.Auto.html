@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자동완성 기능</title>
+    <script>
+    function serch(){
+
+    }
+
+    function hangulCheck(temp){
+    	
+    	var Fword =[
+    		"ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ",
+    		"ㅆ","ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    	];
+    	
+    	var Mword =[
+    		"ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅘ",
+            "ㅙ", "ㅚ", "ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ",
+            "ㅣ"
+    	]
+    	
+    	var Lword =[
+            "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ",
+            "ㄼ", "ㄽ", "ㄾ","ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ",
+            "ㅇ","ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    	]
+    	
+    	alert("입력한 값 : "+temp.value);
+        console.log("hangulCheck호출 :"+document.getElementById("word").value);
+    
+        for(i=0;i<temp.lenth;i++){
+            var code;
+            code = 공식;
+            temp.charCodeAt(i);
+            if(1==1){
+                result+="";
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <input type="text" id="word" name="word" onkeyup="hangulCheck()">
+    <button onClick="serch()">search</button>
+</body>
+</html>

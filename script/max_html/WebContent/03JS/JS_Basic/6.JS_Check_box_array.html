@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        html태그 경우 같은 이름이 두 개 이상이면 자동으로 배열전환
+    -->
+<head>
+<meta charset="UTF-8">
+<title>배열 연습</title>
+    <script>
+        function ClearAll(){
+            for(var i=0;i<document.f_list.check.length;i++){
+                if(document.f_list.check[i].checked == 1){
+                    document.f_list.check[i].checked = 0;
+                }
+            }
+        }
+        function checkboxAll(){
+            //전체체크박스를 선택했을 때
+            if(document.f_list.checkAll.checked == 1){
+                ClearAll();
+               // document.f_list.checkAll.checked = 1;
+                for(var j = 0; j < document.f_list.check.length; j++){
+                    document.f_list.check[j].checked = 1;
+                }
+            }else{
+                //전체체크박스를 해제했을 때
+                for(var j = 0; j < document.f_list.check.length; j++){
+                        document.f_list.check[j].checked = 0;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <table border = "1">
+        <form name = "f_list">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id ="checkAll" name ="checkAll" 
+                    	onclick="checkboxAll()"></th>
+                    <th>TItle</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="center"><input type="checkbox" id ="check" name ="check" > </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center"><input type="checkbox" id ="check" name ="check" > </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center"><input type="checkbox" id ="check" name ="check" > </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </form>
+    </table>
+</body>
+</html>

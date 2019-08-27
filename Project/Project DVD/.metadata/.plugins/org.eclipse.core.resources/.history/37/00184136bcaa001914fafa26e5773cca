@@ -1,0 +1,16 @@
+package seontalk.view;
+
+import javax.swing.JFrame;
+
+public class MentorSearchResult extends JFrame {
+
+	public void MentorSearchResult() {
+		
+	}
+	
+	public static void main(String[] args) {
+		MentorSearchResult msr = MentorSearchResult();
+
+	}
+
+}

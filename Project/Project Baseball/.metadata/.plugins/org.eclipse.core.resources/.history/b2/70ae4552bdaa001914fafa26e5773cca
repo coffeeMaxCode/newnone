@@ -1,0 +1,76 @@
+package seontalk.view;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class MentorSearchResult extends JFrame {
+	JLabel jlb_rank = null;
+	JLabel jlb_nick = null;
+	JLabel jlb_interest = null;
+	JPanel jp_profile = null;
+	JPanel jp_blank = new JPanel();
+	String imgName = "gude_1.png";
+	public MentorSearchResult() {
+		init();
+		
+	}
+	
+	public void init() {
+		jlb_rank = new JLabel(Integer.toString(i+1));
+		jlb_nick = new JLabel(Integer.toString(i+1)+"nick");
+		jlb_interest = new JLabel(Integer.toString(i+1)+"분야");
+		jlb_rank.setOpaque(true);
+		jlb_nick.setOpaque(true);
+		jlb_interest.setOpaque(true);
+		jlb_rank.setBackground(new Color(255,224,200));
+		jlb_nick.setBackground(new Color(255,224,200));
+		jlb_interest.setBackground(new Color(255,224,200));
+		jlb_rank.setHorizontalAlignment(SwingConstants.CENTER);
+		jlb_rank.setVerticalAlignment(SwingConstants.CENTER);
+		jlb_nick.setHorizontalAlignment(SwingConstants.CENTER);
+		jlb_nick.setVerticalAlignment(SwingConstants.CENTER);
+		jlb_interest.setHorizontalAlignment(SwingConstants.CENTER);
+		jlb_interest.setVerticalAlignment(SwingConstants.CENTER);
+		jp_blank.setBackground(new Color(255,224,200));
+		if(i==0) {
+			jp_profile = new ProfileImg(imgName,0,0,160,160);
+			jlb_rank.setIcon(new ImageIcon(".\\src\\images\\medal01_1.png"));
+			jlb_rank.setFont(new Font("HY견고딕",Font.PLAIN,26));
+			GroupLayout layout = new GroupLayout(this);
+			this.setLayout(layout);
+			layout.setHorizontalGroup(layout.createSequentialGroup()
+				.addComponent(jlb_rank,120,120,120)
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(jp_profile,160,160,160)
+					.addComponent(jlb_nick,160,160,160)
+					.addComponent(jlb_interest,160,160,160)
+				)
+				.addComponent(jp_blank)
+			);
+			layout.setVerticalGroup(layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+					.addComponent(jlb_rank,220,220,220)
+					.addGroup(layout.createSequentialGroup()
+						.addComponent(jp_profile,160,160,160)
+						.addComponent(jlb_nick,40,40,40)
+						.addComponent(jlb_interest,20,20,20)
+					)
+					.addComponent(jp_blank)
+				)
+			);
+		}
+	}
+	
+	public static void main(String[] args) {
+		MentorSearchResult msr = new MentorSearchResult();
+
+	}
+
+}

@@ -1,0 +1,18 @@
+package part3;
+/*
+ * 조회 - 상세 조회(1row - AddressVO)
+ *     ,전체 조회(n row ArrayList<AddressVO>)
+ * 입력 - 추가
+ * 수정 - 수정처리
+ * 삭제 - 삭제처리
+ * 
+ * 필요한 메소드 설계하기 - 리턴타입 / 파라미터 타입 결정
+ */
+public class AddressBookCtrl {
+	private static final String _SEL ="select";
+	private static final String _DET ="detail";
+	private static final String _INS ="insert";
+	private static final String _UPD ="update";
+	private static final String _DEL ="delete";
+
+}

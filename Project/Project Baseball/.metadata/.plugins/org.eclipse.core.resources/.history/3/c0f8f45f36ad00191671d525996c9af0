@@ -1,0 +1,119 @@
+package seontalk.view;
+
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import seontalk.vo.MemberVO;
+
+public class ChatList extends JPanel{
+	JLabel jlb_nick = null;
+	JLabel jlb_lastChat = null;
+	JPanel jp_profile = null;
+	JLabel jlb_lastTime = null;
+	MainPage page = null;
+	MemberVO user = null;
+	Theme theme = new Theme();
+	ProfilePage pp = null;
+	ChatRoom room = null;
+	public ChatList(MainPage page,MemberVO user) {
+		this.page = page;
+		this.user = user;
+		//프로필 사진 붙이기
+		jp_profile = new ProfileImg(user.getProfile_img(),0,0,80,80);
+		initLabel();
+		initGroup();
+		initEvent();
+	}
+	public void initLabel() {
+		//라벨이름 붙이기
+		jlb_nick = new JLabel(user.getNick());
+		jlb_lastChat = new JLabel("마지막대화");
+		jlb_lastTime = new JLabel("타임");
+		//라벨 투명도(배경색 보이기)
+		jlb_nick.setOpaque(true);
+		jlb_lastChat.setOpaque(true);
+		jlb_lastTime.setOpaque(true);
+		//라벨 배경색 설정
+		jlb_nick.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jlb_lastChat.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jlb_lastTime.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		//라벨 텍스트 위치설정
+		jlb_nick.setHorizontalAlignment(SwingConstants.LEFT);
+		jlb_nick.setVerticalAlignment(SwingConstants.CENTER);
+		jlb_lastChat.setHorizontalAlignment(SwingConstants.LEFT);
+		jlb_lastChat.setVerticalAlignment(SwingConstants.CENTER);
+		jlb_lastTime.setHorizontalAlignment(SwingConstants.CENTER);
+		jlb_lastTime.setVerticalAlignment(SwingConstants.CENTER);
+		//닉네임,분야 폰트설정
+		jlb_nick.setFont(new Font(page.memVO.getFont(),Font.PLAIN,16));
+		jlb_nick.setForeground(theme.setFontColor(page.memVO.getTheme()));
+		jlb_lastChat.setFont(new Font(page.memVO.getFont(),Font.PLAIN,12));
+		jlb_lastChat.setForeground(theme.setFontColor(page.memVO.getTheme()));
+		jlb_lastTime.setFont(new Font(page.memVO.getFont(),Font.PLAIN,12));
+		jlb_lastTime.setForeground(theme.setFontColor(page.memVO.getTheme()));
+	}
+	public void initGroup() {
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addComponent(jp_profile,80,80,80)
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(jlb_nick,250,250,250)
+				.addComponent(jlb_lastChat,250,250,250)
+			)
+			.addComponent(jlb_lastTime,80,80,80)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(jp_profile,80,80,80)
+				.addGroup(layout.createSequentialGroup()
+					.addComponent(jlb_nick,40,40,40)
+					.addComponent(jlb_lastChat,40,40,40)
+				)
+				.addComponent(jlb_lastTime,80,80,80)
+			)
+		);
+	}
+	public void initEvent() {
+		jp_profile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				for(int i=0;i<page.ProfileList.size();i++) {
+					ProfilePage pp = page.ProfileList.get(i);
+					if(pp.user.getNick().equals(user.getNick())) {
+						pp.setVisible(false);
+						page.ProfileList.remove(i);
+					}
+				}
+				pp = new ProfilePage(page,user);
+				page.ProfileList.add(pp);
+				super.mouseClicked(e);
+			}
+		});
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getX()>=80) {
+					if(e.getClickCount()==2) {
+						for(int i=0;i<page.ChatRoomList.size();i++) {
+							ChatRoom room = page.ChatRoomList.get(i);
+							if(room.user.getNick().equals(user.getNick())) {
+								room.setVisible(false);
+								page.ChatRoomList.remove(i);
+							}
+						}
+						room = new ChatRoom(page,user);
+						page.ChatRoomList.add(room);
+					}
+				}
+				super.mouseClicked(e);
+			}
+		});
+	}
+}

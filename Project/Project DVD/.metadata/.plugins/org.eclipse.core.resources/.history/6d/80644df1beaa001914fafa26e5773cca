@@ -1,0 +1,38 @@
+package seontalk.view;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+@SuppressWarnings("serial")
+public class MentorSearchResult extends JFrame {
+	JLabel jlb_rank = null;
+	JLabel jlb_nick = null;
+	JLabel jlb_interest = null;
+	JPanel jp_profile = null;
+	JPanel jp_blank = new JPanel();
+	String imgName = "gude_1.png";
+	
+	public MentorSearchResult() {
+		init();
+		
+	}
+	
+	public void init() {
+		
+	
+	}
+	
+	public static void main(String[] args) {
+		MentorSearchResult msr = new MentorSearchResult();
+
+	}
+
+}

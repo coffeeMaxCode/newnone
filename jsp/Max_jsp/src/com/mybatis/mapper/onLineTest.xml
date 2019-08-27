@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.OnLineTestMapper">
+	
+	<resultMap id="swVO" type="com.vo.SwDesignVO"/>	
+
+<!-- 시험 접수 확인  -->
+ 	<select id="isOk" parameterType="map" resultType="string">
+		SELECT NVL((SELECT '승인'
+						FROM take_examination
+    					WHERE 	mem_id  = #{mem_id}
+    					AND		exam_no = #{exam_no}),'확인불가')
+    	FROM dual
+	</select>
+<!-- subjectList : 콤보박스에서 사용 : json형식로 꺼내기 -->
+	<select id="subjectList" parameterType="map" resultType="map">
+		SELECT sub_cd, sub_name
+    	FROM online_subject
+	</select>
+<!-- test 시험응시 프로세스 -->
+	<select id="getExam_No" parameterType="int" resultType="java.lang.String">
+		SELECT TO_CHAR(SYSDATE,'YY'||'MM'||'DD')
+					  ||LPAD(seq_eam_no.nextval,4,0) exam_no 
+			FROM dual
+    </select>
+<!-- 시험 접수 프로세스  -->
+	<insert id="examReceipt" parameterType="map" >
+		INSERT INTO take_examination(exam_no, 	mem_id, 	sub_cd ,
+									exam_date, 	get_point,  is_pass,
+									s_time, 	e_time, 	fee_date,
+									is_payment, exam_chasi, 	reg_date)
+							values(#{exam_no},	#{mem_id},	#{sub_cd},
+				  				   #{exam_date},0,			0,
+				   				   '00:00:00',	'00:00:00',	'9999-99-99',
+				   				    0,			1,			to_char(SYSDATE,'YYYY-MM-DD'))
+	</insert>
+<!-- 시험문제 프로시저 호출  -->
+ 	<select id="swDesignExam" parameterType="map" statementType="CALLABLE">
+		{ call proc_swDesign(#{key, jdbcType=CURSOR, mode=OUT, javaType=java.sql.ResultSet, resultMap=swVO}) }
+	</select>
+</mapper>

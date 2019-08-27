@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<!-- init-method 는 bean이 생성이 끝난 후(전역변수, 생성자 등), 실행되는 메소드 -->
+	<bean id="helloBean" class="com.di.HelloBeanImpl" init-method="exampleInit" destroy-method="exampleDestroy">
+		<!-- 전역변수 선언방법 -->
+		<property name="msg">
+			<value>What a beautiful day!</value>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,162 @@
+package seontalk.view;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import seontalk.control.ConnectionCtrl;
+import seontalk.vo.MemberVO;
+
+public class MyFollow extends JFrame {
+	JLabel 		jl_following 		= null;
+	JLabel 		jl_following_num 	= null;
+	JLabel 		jl_follower 		= null;
+	JLabel 		jl_follower_num  	= null;
+	JTextField  jtf_search 			= null;
+	
+	JPanel 		jp_bubble 	= new JPanel();
+	JPanel 		jp_north 	= new JPanel();
+	JPanel		jp_grid 	= new JPanel();
+	JScrollPane jsp_bubble	= new JScrollPane(jp_grid
+								,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+								,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+	MainPage page = null;
+	Theme theme = new Theme();
+	
+	List<Object> followerList  = null;
+	List<Object> followingList = null;
+
+	public MyFollow(MainPage page) {
+		this.page = page;
+		getCount();
+		init();
+	}
+	
+	public void getCount() {
+		ConnectionCtrl ctrl = new ConnectionCtrl();
+		followerList = ctrl.ConnectSelect("select", "follower", page.memVO);
+		followingList = ctrl.ConnectSelect("select", "following", page.memVO);
+	}
+	
+	public void init() {
+		setSize(410, 620);
+		initPanel();
+		initLabel();
+		initTextField();
+		initGroup();
+		initEvent();
+		initLocation();
+		initScroll();
+		setResizable(false);
+		setVisible(true);
+	}
+	
+	public void initScroll() {
+		UIDefaults defaults = UIManager.getDefaults();
+	    defaults.put("ScrollBar.width", new Integer("8"));
+	    jsp_bubble.getVerticalScrollBar().setUnitIncrement(20);
+	    jsp_bubble.setBorder(null);
+	}
+	
+	public void initLocation() {
+		Dimension monitor = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension mainPageSize = page.getSize();
+		Point point = page.getLocation();
+		if(point.x<getSize().width) {
+			if(monitor.height-(point.y+getSize().height)<0) {
+				setLocation(point.x+(mainPageSize.width+5), monitor.height-getSize().height);
+			}
+			else {
+				setLocation(point.x+(mainPageSize.width+5), point.y);
+			}
+		}
+		else {
+			if(monitor.height-(point.y+getSize().height)<0) {
+				setLocation(point.x-(getSize().width+5), monitor.height-getSize().height);
+			}
+			else {
+				setLocation(point.x-(getSize().width+5), point.y);
+			}
+		}
+	}
+	
+	public void initPanel() {
+		jp_north.setLayout(new FlowLayout(FlowLayout.CENTER));
+		jp_north.setPreferredSize(new Dimension(410, 100)); // 패널사이즈 설정하는 법
+		jp_north.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		add(jp_north, "North");
+	}
+	
+	public void initTextField() {
+		jtf_search 	= new JTextField("아이디를 입력하세요");
+		jtf_search.setPreferredSize(new Dimension(200,20));
+		jp_north.add(jtf_search);
+	}
+	
+	public void initLabel() {
+		jl_following 		= new JLabel("팔로잉", JLabel.CENTER);  
+		jl_following_num 	= new JLabel("27", JLabel.CENTER);   
+		jl_follower 		= new JLabel("팔로워", JLabel.CENTER);  
+		jl_follower_num  	= new JLabel("30", JLabel.CENTER);   
+		jl_following.setPreferredSize(new Dimension(150, 30)); 
+		jl_follower.setPreferredSize(new Dimension(150, 20)); 
+		jl_following_num.setPreferredSize(new Dimension(150, 60)); 
+		jl_follower_num.setPreferredSize(new Dimension(150, 60)); 
+		jp_north.add(jl_following);
+		jp_north.add(jl_follower);
+		jp_north.add(jl_following_num);
+		jp_north.add(jl_follower_num);
+	}
+	
+	public void initGroup() {
+		List<FollowList> followList = new ArrayList<>();
+		FollowList follow = null;
+		for (int i = 0; i < 10; i++) {
+			follow = new FollowList(i, page);
+			followList.add(follow);
+		}
+		jp_grid.setLayout(new GridLayout(followList.size(), 1));
+		for (int i = 0; i < followList.size(); i++) {
+			jp_grid.add(followList.get(i));
+		}
+		GroupLayout layout = new GroupLayout(jp_bubble);
+		jp_bubble.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(jtf_search)
+				.addComponent(jsp_bubble)
+			)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addComponent(jtf_search)
+			.addComponent(jsp_bubble)
+		);
+		jp_bubble.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		add(jp_bubble, "Center");
+	}
+	public void initEvent() {
+		jtf_search.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				jtf_search.setText("");
+			}
+		});
+	}
+
+}

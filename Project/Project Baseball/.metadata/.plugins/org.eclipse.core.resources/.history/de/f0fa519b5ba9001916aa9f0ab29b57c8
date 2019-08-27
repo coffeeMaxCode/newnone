@@ -1,0 +1,10 @@
+package seontalk.view;
+
+public class searchtest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

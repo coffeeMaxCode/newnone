@@ -1,0 +1,41 @@
+package seontalk.model;
+
+import seontalk.vo.ChatLogVO;
+import seontalk.vo.ChatVO;
+import seontalk.vo.MemberVO;
+import seontalk.vo.PostVO;
+import seontalk.vo.ReplyVO;
+
+public class InsertLogic {
+
+	public int ConnectDao(String work,Object pVO) {
+		int result = 0;
+		if(pVO instanceof MemberVO) {
+			MemberVO rVO = (MemberVO)pVO;
+			MemberDao memDao = new MemberDao();
+			result = memDao.Insert(work,rVO);
+		}
+		else if(pVO instanceof ChatVO) {
+			ChatVO rVO = (ChatVO)pVO;
+			ChatDao chatDao = new ChatDao();
+			result = chatDao.Insert(rVO);
+		}
+		else if(pVO instanceof ChatLogVO) {
+			ChatLogVO rVO = (ChatLogVO)pVO;
+			ChatLogDao logDao = new ChatLogDao();
+			result = logDao.Insert(rVO);
+		}
+		else if(pVO instanceof PostVO) {
+			PostVO rVO = (PostVO)pVO;
+			PostDao postDao = new PostDao();
+			result = postDao.Insert(rVO);
+		}
+		else if(pVO instanceof ReplyVO) {
+			ReplyVO rVO = (ReplyVO)pVO;
+			ReplyDao replyDao = new ReplyDao();
+			result = replyDao.Insert(rVO);
+		}
+		return result;
+	}
+
+}

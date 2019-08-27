@@ -1,0 +1,36 @@
+*JAVA 설치 
+> 관리자 권한의로 실행
+>Java 설치 경로만 변경 ; 'C:\jdk1.8\'
+>설치 후에 [cmd] 실행
+>'java -version' 입력 = 가상드라이브 설치 확인
+
+
+*eclipse 설치 및 환경 설정
+>관리자 권한으로 실행
+>'Eclipse IDE for Enterprise Java Developers' 설치
+>[Accept]
+ 
+>내 컴퓨터 드라이브 내 'Workspace' 새폴더 만들기
+; 자바에는 사용 가능한 특정 특수문자들이 있다
+>바탕화면에서 프로그램 실행
+>연결 폴더'Workspace'설정
+
+*인코딩타입 맞추기 / 서버환경
+> [Window] - [Preferences]
+
+> [General] - [Workspace]
+; 'Text file encoding' - 'other' ; 'UTF-8'
+
+> [General] - [Web Browser] > Chrome
+
+> [Web] > [CSS/HTML/JSP Files]> 'UTF-8'
+
+> [General] - [Content Type] - Text  > 'UTF-8'
+			          - Java Propertise File > 'UTF-8'
+			          - JSP		 > 'UTF-8'
+>[Apply and close]
+
+
+*Server
+ UI 밑단 > Server - New : add
+	     = runtime enviorment 하나로 유지할 것~!

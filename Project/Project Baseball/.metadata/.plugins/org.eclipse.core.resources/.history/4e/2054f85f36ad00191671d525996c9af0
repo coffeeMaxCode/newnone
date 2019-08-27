@@ -1,0 +1,72 @@
+package seontalk.view;
+
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.GroupLayout;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import seontalk.vo.MemberVO;
+
+public class MentorRank extends JPanel{
+	MainPage page = null;
+	JPanel jp_grid = new JPanel();
+	JScrollPane 	jsp_bubble		= new JScrollPane(this
+			,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+			,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	Theme theme = new Theme();
+	public MentorRank(MainPage page) {
+		this.page = page;
+		initGroup();
+		initScroll();
+		jsp_bubble.setBorder(null);
+		setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+	}
+	public void initScroll() {
+		UIDefaults defaults = UIManager.getDefaults();
+	    defaults.put("ScrollBar.width", new Integer("8"));
+	    jsp_bubble.getVerticalScrollBar().setUnitIncrement(20);
+	}
+	public void initGroup() {
+		List<MentorRankList> rankList = new ArrayList<>();
+		MentorRankList ranker = null;
+		int rank = 1;
+		for(int i=0;i<page.userList.size();i++) {
+			MemberVO user = (MemberVO)page.userList.get(i);
+			if("mentor".equals(user.getMentoring())) {
+				ranker = new MentorRankList(page,user,rank);
+				rankList.add(ranker);
+				rank++;
+			}
+		}
+		jp_grid.setLayout(new GridLayout(rankList.size()-1,1));
+		for(int i=1;i<rankList.size();i++) {
+			jp_grid.add(rankList.get(i));
+		}
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(rankList.get(0))
+				.addComponent(jp_grid)
+			)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addComponent(rankList.get(0),220,220,220)
+			.addComponent(jp_grid)
+		);
+	}
+	
+}

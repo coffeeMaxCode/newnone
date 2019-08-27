@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체가 제공하는 함수들</title>
+</head>
+<body>
+    <script>
+        //선언과 동시에 초기화
+        var nums = new Array(0,1,2,3,4,5);
+        var r1 = nums.pop();
+        console.log("배열의 가장 마지막 원소 자름"+r1);
+        nums.push(6,7);
+		console.log(nums[6]);        
+        nums.reverse();
+        for(j=0;j<nums.length;j++){
+            document.write(nums[j]+"<br>");
+        }
+        nums.sort();
+        document.write("<hr>")
+        for(j=0;j<nums.length;j++){
+            document.write(nums[j]+"<br>");
+        }
+    </script>
+
+</body>
+</html>

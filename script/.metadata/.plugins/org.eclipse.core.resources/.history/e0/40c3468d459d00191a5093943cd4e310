@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>뉴스 자동 갱신 페이지 구현</title>
+<script type="text/javascript" src="../../Stylesheet/js/jquery.min.js"></script>
+<script type="text/javascript">
+		function autoReload(){
+			$.ajax({
+				method:"get"
+				,url:"newsData.jsp"
+				,success:function(result){
+					$("#d_news").html(result);
+					}
+				,fail(xhrObject,textStatus){
+					alert("Request failed: " + textStatus);
+					alert(xhrObject.responseText);
+				}
+				});
+		}
+	</script>
+</head>
+<body>
+	<script>
+		$(document).ready(function() {
+			var watch;
+			function start() {
+				watch = setInterval(autoReload, 1000);
+			}
+			start();
+		});
+	</script>
+	<div align="Center">
+		<h1>뉴스 자동 갱신 페이지</h1>
+		<h3>헤드라인</h3>
+		<button onClick="strat()">Start</button>
+		<div id="d_news">뉴스 준비중....</div>
+	</div>
+</body>
+</html>

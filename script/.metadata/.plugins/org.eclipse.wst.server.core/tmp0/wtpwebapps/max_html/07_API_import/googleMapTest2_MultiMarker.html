@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Map Service API 활용 - Multi-Marker 기능 추가</title>
+</head>
+
+<body>
+	<div id="map" style="width:900px;height :500px"></div>
+	<script type="text/javascript">
+		var locs = [	//2차배열 : [3][3]
+						 ['익선주택',37.573600,126.989440]
+						 ,['세이지키친',37.1786238,127.0191596 ]
+						 ,['봉우이층집 강남본점',37.5017292,127.0251383]
+					];
+		// locs[0] = ['익선주택',37.573600,126.989440]
+		function initMap(){
+			//alert("실행 확인용 알람");
+			
+			/* 구글에서 제공하는 Map객체 생성
+			      지도 출력시 중앙의 위치를 설정하고 내가 보고 싶은 위치는 별도로 추가 가능
+			   Map 속성에는 생성한 Map객체를 치환
+			   Zoom속성에 따라 상세도 결정								*/
+			var map = new google.maps.Map(document.getElementById("map"),{
+				 center		: new google.maps.LatLng(37.3,126.915)
+				,map		: map
+				,zoom		: 9.5
+				
+			});
+			var infoWindow = new google.maps.InfoWindow();
+			//마커 객체 여러개 선언 해야함 > 지역변수 선언 > for문 사용
+			var marker, i;
+			for(i=0;i<locs.length;i++){
+				marker =  new google.maps.Marker({
+					 id : i
+					,position : new google.maps.LatLng(locs[i][1],locs[i][2])
+					,map : map
+				});
+			google.maps.event.addListener(marker,'click',(function(marker,i){
+				infoWindow.setContent(locs[i][0]);
+				infoWindow.open(map,marker );
+			}));
+			}
+		}
+	</script>
+<!-- function이 먼저 선언되어야함 -->
+<script type="text/javascript" 
+		src="http://maps.googleapis.com/maps/api
+			/js?key=AIzaSyBhH7WIDhSdycT9E0_8k3_rf6n3gNoClZU
+			&callback=initMap">
+</script>
+</body>
+</html>

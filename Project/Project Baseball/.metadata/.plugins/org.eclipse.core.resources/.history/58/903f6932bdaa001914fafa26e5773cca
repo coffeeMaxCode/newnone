@@ -1,0 +1,64 @@
+package seontalk.view;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class MentorSearchResult extends JFrame {
+	JLabel jlb_rank = null;
+	JLabel jlb_nick = null;
+	JLabel jlb_interest = null;
+	JPanel jp_profile = null;
+	JPanel jp_blank = new JPanel();
+	String imgName = "gude_1.png";
+	public MentorSearchResult() {
+		init();
+		
+	}
+	
+	public void init() {
+		jlb_rank = new JLabel(Integer.toString(i+1));
+		jlb_nick = new JLabel(Integer.toString(i+1)+"nick");
+		jlb_interest = new JLabel(Integer.toString(i+1)+"분야");
+		jlb_rank.setOpaque(true);
+		jlb_nick.setOpaque(true);
+		jlb_interest.setOpaque(true);
+		jp_profile = new ProfileImg(imgName,0,0,160,160);
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(jp_profile,160,160,160)
+				.addComponent(jlb_nick,160,160,160)
+				.addComponent(jlb_interest,160,160,160)
+			)
+			.addComponent(jp_blank)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+				.addComponent(jlb_rank,220,220,220)
+				.addGroup(layout.createSequentialGroup()
+					.addComponent(jp_profile,160,160,160)
+					.addComponent(jlb_nick,40,40,40)
+					.addComponent(jlb_interest,20,20,20)
+				)
+				.addComponent(jp_blank)
+			)
+		);
+		setBackground(new Color(255,202,158));
+		setSize(410,545);
+		setResizable(false);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		MentorSearchResult msr = new MentorSearchResult();
+
+	}
+
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Map Service API 활용 - Marker 기능 추가</title>
+</head>
+
+<body>
+	<div id="map" style="height :500px"></div>
+	<script type="text/javascript">
+		function initMap(){
+			//alert("실행 확인용 알람");
+			//레스토랑 위치를 위도와 경도로 표시
+			var curLatLng ={
+					lat		:37.573600
+					,lng	:126.989440
+			};
+			/* 구글에서 제공하는 Map객체 생성
+			      지도 출력시 중앙의 위치를 설정하고 내가 보고 싶은 위치는 별도로 추가 가능
+			   Map 속성에는 생성한 Map객체를 치환
+			   Zoom속성에 따라 상세도 결정								*/
+			var map = new google.maps.Map(document.getElementById("map"),{
+				 center		: curLatLng
+				,positioin	: curLatLng
+				,map		: map
+				,zoom		: 15
+				
+			});
+			//마커 객체 생성
+			var marker = new google.maps.Marker({
+				map:map,
+				position : curLatLng,
+				Title : 'Maxchelin Guide - Ver.Cafe : 익선주택'
+			});
+			//마커 최대 폭
+			var markerMaxWidth = 300;
+			//말풍선 내용
+			/* 문자열을 줄바꿈 처리 하고 싶을 때!! 매 줄마다 내용 추가로 처리하기 */
+			var contents = "<div><h3>Maxchelin Guide - Ver.Cafe : 익선주택</h3>";
+			    contents+= "<p>홍콩식 와플</p><img src='익선주택img.JPG' width='90px' height='50px'></div>";
+			var infoWindow = new google.maps.InfoWindow({
+					content : contents
+				   ,maxWidth : markerMaxWidth
+			});
+			//마커 클릭 시 이벤트 처리 : 말풍선 팝업
+			//1)마커 객체 변수명, 2)이벤트 이름 , 3)이벤트 처리
+			google.maps.event.addListener(marker,'click',function(){
+				infoWindow.open(map,marker);
+			});
+		}
+	</script>
+<!-- function이 먼저 선언되어야함 -->
+<script type="text/javascript" 
+		src="http://maps.googleapis.com/maps/api
+			/js?key=AIzaSyBhH7WIDhSdycT9E0_8k3_rf6n3gNoClZU
+			&callback=initMap">
+</script>
+</body>
+</html>

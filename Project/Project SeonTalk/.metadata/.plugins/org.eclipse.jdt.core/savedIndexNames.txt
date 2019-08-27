@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+E:\WorkSpace\Project\Project SeonTalk\.metadata\.plugins\org.eclipse.jdt.core
+388807311.index

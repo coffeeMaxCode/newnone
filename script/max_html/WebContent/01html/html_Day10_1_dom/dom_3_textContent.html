@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- 
+DOM 지원하는 API 학습
+DOM API 활용하여 html태그 추가,삭제,변경 처리 가능 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM-textContent</title>
+</head>
+<body>
+<style>
+	#d_menu{
+        border:1px solid red;
+    }
+    /* .c_menu{
+        border:1px solid blue;
+    }          */
+</style>
+<script type="text/javascript">
+        window.onload = function(){ // 익명함수 : 1회성 사용
+        var output ='';
+        output+='<ul>';
+        output+='<li>menu1</li>';
+        output+='<li>menu2</li>';
+        output+='<li>menu3</li>';
+        output+='<li>menu4</li>';
+        output+='</ul>';
+        // document.body.textContent = output;
+        // document.body.textContent = "<h1>Document Object Mod</h1>";
+        document.getElementById("d_menu").innerHTML=output;
+    }
+    </script>
+<div id="d_menu" class="c_menu"></div>
+</body>
+</html>

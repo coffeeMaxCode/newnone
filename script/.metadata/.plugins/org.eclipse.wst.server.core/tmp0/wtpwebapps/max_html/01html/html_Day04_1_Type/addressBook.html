@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>입력 태그 : 폼 전송 / 서버로 전송</title>
+</head>
+<body>
+	<form name="f_add" method="get" action="./addressBookAction.html">
+		<table align="center" width="700px" border="1" borderColor="puple">
+			<tr>
+				<td><label>ID</label></td>
+				<td><input type="text" ID="mem_id" size="12"></td>
+			</tr>
+			<tr>
+				<td><label>PW</label></td>
+				<td><input type="password" ID="mem_pw" size="12"></td>
+			</tr>
+			<tr>
+				<td><label>파일 추가</label></td>
+				<td><input type="file" ID="mem_file"></td>
+			</tr>
+			<tr>
+				<td><label>체크박스</label></td>
+				<td><input type="Checkbox" ID="mem_hoby"></td>
+			</tr>
+			<tr>
+				<td><label>라디오 버튼</label></td>
+				<td><input type="radio" ID="gender" value="m">남
+				    <input type="radio" ID="gender" value="w">여</td>
+			</tr>
+			<tr>
+				<td><label>생년월일</label></td>
+				<td><input type="date" ></td>
+			</tr>
+			<tr><!--초기창에 메시지 입력 / 필수입력사항-->
+				<td><label>나이</label></td>
+				<td><input type="number" 
+						   placeholder="지정하세요" required="required"></td>
+			</tr>
+			<tr>
+				<td><label>숫자</label></td>
+				<td><input type="number"></td>
+			</tr>
+			<tr><!--hidden 서버에서 필요한 정보 가져올때-->
+				<td><label>hidden</label></td>
+				<td><input type="hidden" ID="hidden" value="값"></td>
+			</tr>
+			<tr>
+				<td><label>select</label></td>
+				<td><!--ctrl버튼 누르고 선택 시 다중선택 가능 / value 서버로 넘기는 값-->
+					<select id="sel" multiple>
+					<option value="아메리카노">아메리카노</option>
+					<option value="아이스아메리카노">아이스아메리카노</option>
+					<option value="프라프치노" selected>프라프치노</option>
+					<option value="티바나">티바나</option>
+					</select>
+				</td>
+			</tr><tr>
+				<td><label>낙서장</label></td>
+				<td><textarea rows="5" cols="40" id="comments"></textarea></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.MemberMapper">
+<!-- resultMap 선언 -->
+	<resultMap id="dVO" type="com.vo.DeptVO"/>		
+	<resultMap id="mVO" type="com.vo.MemberVO"/>		
+	<resultMap id="teVO" type="com.vo.TakeExaminationVO"/>
+<!-- 현재시간 출력 -->
+	<select id="currentTime" parameterType="int" resultType="java.lang.String">
+		select TO_CHAR(sysdate,'YYYY-MM-DD') from  dual
+	</select>
+<!-- memberList -->
+	<select id="memberList" parameterType="map" resultType="map">
+		SELECT mem_id, mem_pw, mem_name, mem_addr, mem_zipcode
+    	FROM member
+ 	<!-- WHERE mem_id=#{mem_id} -->
+	</select>
+<!-- member 입력값 저장 -->
+	<insert id='memberInsert' parameterType="java.util.Map">
+		insert into member(mem_id,mem_pw,mem_name,
+											mem_addr,mem_zipcode)
+		values(#{mem_id},#{mem_pw},#{mem_name},#{mem_addr},#{mem_zipcode})
+	</insert>
+<!-- member ID 유무 확인 -->
+	<select id="isId" parameterType="com.vo.MemberVO" resultType="java.lang.String">
+		SELECT NVL((SELECT 'I found it!' FROM member
+                where mem_id=#{MEM_ID}),'Not found ID') status
+    	FROM dual
+    </select>
+<!-- member 비밀번호 유무 확인 -->
+	<select id="login" parameterType="com.vo.MemberVO" resultType="java.lang.String">
+		SELECT NVL((SELECT 'I found it!' FROM member
+                where mem_id=#{MEM_ID}
+                and mem_pw=#{MEM_PW}),'PW is Wrong')
+    	FROM dual
+    </select>
+<!-- 로그인 프로시저  -->
+ 	<select id="proc_onlinetestlogin" parameterType="com.vo.MemberVO" statementType="CALLABLE">
+		{call proc_onlinetestlogin(#{MEM_ID,mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+						 		  ,#{MEM_PW,mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+						  		  ,#{MEM_NAME,mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+							  	  ,#{r_status,mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+							  	  ,#{key,mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=teVO}
+							  	  )}
+    </select>
+<!-- DeptVO 프로시저 호출  -->
+ 	<select id="my_proc" parameterType="map" statementType="CALLABLE">
+		{ call my_proc(#{key, jdbcType=CURSOR, mode=OUT, javaType=java.sql.ResultSet, resultMap=mVO}) }
+	</select>
+	
+
+</mapper>

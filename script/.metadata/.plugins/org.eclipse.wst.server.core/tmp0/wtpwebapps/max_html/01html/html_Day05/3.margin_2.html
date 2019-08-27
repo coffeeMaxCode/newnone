@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style type"text/css">
+	/*시각적 속성을 주석으로 처리하면 마진 겹침 일어남
+	   상위태그 마진 하위태그 마진 중 큰 값이 적용*/
+		#upper{
+			border : 1px solid red;
+			margin-top: 100px;
+		}
+		#lower{
+			background-color : blue;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="upper">
+		<div id="lower">
+		Hey buddy
+		</div>
+	</div>
+
+</body>
+</html>

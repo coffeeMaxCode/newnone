@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- ajax활용시 처리결과를 담을 때 사용가능 -->
+<title>jQuery API를 활용한 CSS 적용하기</title>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-3.4.1.js">
+</script>
+	<style type="text/CSS">
+	.high-light-0{
+		background : red;
+	}
+	.high-light-1{
+		background : orange;
+	}
+	.high-light-2{
+		background : yellow;
+	}
+	.high-light-3{
+		background : green;
+	}
+	.high-light-4{
+		background : blue;
+	}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		$(document).ready(function (){
+			/* css : id = # // class = , . // tage = tag name */
+			
+			$('h1').each(function (index, item){
+				$(this).addClass('high-light-'+index);
+			});
+		});
+	</script>
+
+	<h1>item - 0</h1>
+	<h1>item - 1</h1>
+	<h1>item - 2</h1>
+	<h1>item - 3</h1>
+	<h1>item - 4</h1>
+
+</body>
+</html>

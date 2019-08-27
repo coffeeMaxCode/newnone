@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+<!-- bean : class에서 연결 -->
+
+	<bean id="myCar" class="com.di.ChairMan" />
+	
+	<bean id="yourCar" class="com.di.ChairMan">
+		<constructor-arg index="0" type="java.lang.String" value="blue" />
+		<constructor-arg index="1" type="int" value="50" />
+	</bean>
+	
+	<bean id="ourCar" class="com.di.ChairMan" >
+		<constructor-arg index="0" type="java.lang.String" value="pink" />
+		<constructor-arg index="1" type="int" value="172" />
+		<constructor-arg index="2" type="int" value="6" />
+	</bean>
+</beans>

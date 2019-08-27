@@ -1,0 +1,7 @@
+BoardLogic 에서
+인스턴스화를 전역변수로 하지 않은 이유는??
+
+Test.Ver2.0.7
+max
+max@mail.net
+Test.Ver2.0.7 with Files

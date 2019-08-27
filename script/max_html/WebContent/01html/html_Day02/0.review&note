@@ -1,0 +1,26 @@
+태그 중복 허용
+<태그></태그>
+<태그1><태그2></태그2></태그1>
+
+html : 태그(tag) =xml: 요소(element) =xml: 노드(node)
+
+Oracle DML = 파싱 pasing
+
+Chrome Brower 이용 - 개발자도구 - log 지원 > XML parser 내장(문법 체크)
+
+브라우저 꼭 필요함 : 인터프리터 역할 > 통역
+인터프리터 역할 : 브라우저 내에 html 태그 명세서 존재
+메모장 hwp 등으로 html 파일을 열면 : 태그가 그대로 보이게 됨
+
+<태그 속성 = 값></태그>
+태그 안에 속성을 사용하면 그 태그를 폭넓게 활용 가능
+태그 안에서 여러개의 속성 사용가능
+
+parser Exceptoin
+
+XML 확인필요
+
+DTD File - XML문서의 명세서 역활 - 또 다른 언어 - 데이터 타입 1개
+XML File -
+XML Schema(XSD) File - DTD 대안 명세서 : XML언어 기반
+XSL(XSS) ; 잘 사용 안함 

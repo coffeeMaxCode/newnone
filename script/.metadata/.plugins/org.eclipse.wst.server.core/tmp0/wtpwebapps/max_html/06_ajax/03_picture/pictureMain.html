@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Picture Main</title>
+<link rel="stylesheet" type="text/css" href="pictureMain.css" />
+<script type="text/javascript">
+//ajax코드 추가하기 - javascript - 주의사항 : 돔구성이 완료되었을 때 처리할 내용
+	//전역변수로 선언!
+	var xhrObject = null;
+	var el;
+	
+	function createRequest() {
+		try {
+			//비동기통신 객체 생성
+			xhrObject = new XMLHttpRequest();
+		} catch (trymicrosoft) {
+			xhrObject = null;
+		}
+		if (xhrObject == null) {
+			alert("Error creating request object!!!");
+		}
+	}
+	
+	function makeInfo(result){
+	//파라미터로 서버페이지에서 처리된 결과를 json포맷으로 받아옴
+		//alert(result);
+		// return타입 이 배열로 변환
+		var jsonDoc = JSON.parse(result);
+		var picHTML = "";
+		if(jsonDoc.length>0){
+			for(var i=0;i<jsonDoc.length;i++){
+				//picHTML = jsonDoc[i].p_img+", "+jsonDoc[i].p_info;
+				picHTML += "<table border='1'>"
+				picHTML += "<tr><td><img width='200' height='150' src=./pic/"+jsonDoc[i].p_img+"></img></td>"
+				picHTML += "<td>"+jsonDoc[i].p_info+"</td></tr>"
+				picHTML += "</table>";
+    		}
+		}
+		else{
+			picHTML="Not found";
+		}
+		return picHTML;
+	}
+	
+	function result_process(){
+		var temp = xhrObject.responseText;
+		//makeInfo(temp);
+		var picHTML = makeInfo(temp);
+		
+		//alert(picHTML);
+		document.getElementById("popupContent").innerHTML=picHTML;
+	}
+	
+	function popup_process(){
+		//상태 값이 4일 때 체크
+		if(xhrObject.readyState==4){
+			//서버 응답 값이 200일 때(OK)
+			if(xhrObject.status==200){
+				result_process();
+			}//서버 응답 값이 204일 때(fail)
+			else if(xhrObject.status==204){
+				
+			}
+		}
+	}
+	 //서버로 요청 처리를 전송 - 비동기로 처리
+	function startMethod(td) {
+		//그림 제목에 마우스를 오버 했을 때 td태그에 정의한 아이디값을 가져오는 코드
+    	//alert함수를 통해 확인해 봄.
+    	//alert("td.id: "+td.id);
+		
+		//비동기통신 객체 생성 메소드 호출 - 전역변수로 초기화됨
+		createRequest();
+		//document.getElementById("popupContent").innerHTML = "startMethod";
+		//콜백메소드 이름 선언
+		xhrObject.onreadystatechange = popup_process;
+		//옵션 추가
+		//1)전송방식 - GET[query string,링크,제약,노출]|POST
+		//2)목적지 - 요청을 누가처리하지? - XXX.jsp(오라클통신,자바코드활용,데이터)
+		//3)옵션 - true:비동기처리, false:동기처리
+		//var url = "./pictureInfo.jsp?";
+		var url = "./pictureInfo.jsp?p_no="+td.id;
+		xhrObject.open("GET",url,true);
+		//전송
+		xhrObject.send(null); 	
+	}
+
+	function clearMethod() {
+		//document.getElementById("popupContent").innerHTML = "clearMethod";
+		document.getElementById("popupContent").innerHTML = "";
+		
+	}
+</script>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<th colspand="2">Minions World</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td align="center"><img src="./pic/pic1.jpg" width="150"
+					height="150"></td>
+				<td id="1" onmouseover="startMethod(this)"
+					onmouseout="clearMethod()">JokerMinion</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="./pic/pic2.jpg" width="150"
+					height="150"></td>
+				<td id="2" onmouseover="startMethod(this)"
+					onmouseout="clearMethod()">Leon&Matilda Minions</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="./pic/pic3.jpg" width="150"
+					height="150"></td>
+				<td id="3" onmouseover="startMethod(this)"
+					onmouseout="clearMethod()">Harlequin Minions</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="./pic/pic4.jpg" width="150"
+					height="150"></td>
+				<td id="4" onmouseover="startMethod(this)"
+					onmouseout="clearMethod()">Babies minions</td>
+			</tr>
+		</tbody>
+
+	</table>
+	<div id="popupContent">Here</div>
+
+</body>
+</html>

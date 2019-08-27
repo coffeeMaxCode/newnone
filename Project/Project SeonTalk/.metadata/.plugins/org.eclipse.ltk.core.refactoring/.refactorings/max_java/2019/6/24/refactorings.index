@@ -1,0 +1,45 @@
+1560126042073	Delete element
+1560126084719	Delete elements
+1560147283512	Rename type 'AddressV0'
+1560163472930	Move compilation units
+1560165437222	Rename type 'AddressBook'
+1560165441830	Rename type 'SubBook'
+1560165459781	Rename type 'AddressVO'
+1560165478075	Rename type 'AddressBookDao'
+1560165484443	Rename type 'T5_AddressBookDao'
+1560165528242	Rename type 'AddressBookCtrl'
+1560165536168	Rename type 'AddressBookInterface'
+1560165544626	Rename type 'AddressBookSimulation'
+1560165572925	Rename type 'ModifyLogic'
+1560165579427	Rename type 'RegisterLogic'
+1560165612907	Rename type 'T8_ModifyLogic'
+1560165627459	Rename type 'DeleteLogic'
+1560165636785	Rename type 'RetrieveLogic'
+1560165642612	Rename type 'T1_AddressBook'
+1560165646673	Rename type 'T2_SubBook'
+1560165651266	Rename type 'T3_AddressVO'
+1560165654656	Rename type 'T4_AddressBookDao'
+1560165658045	Rename type 'T5_AddressBookInterface'
+1560165661342	Rename type 'T6_AddressBookCtrl'
+1560165665575	Rename type 'T7_AddressBookSimulation'
+1560165670168	Rename type 'T8_RegisterLogic'
+1560165673495	Rename type 'T9_ModifyLogic'
+1560317455154	Delete element
+1560317474630	Delete element
+1560317485991	Move packages
+1560317495965	Move packages
+1560321343205	Rename package 'utul'
+1560336606638	Rename package 'project_02_DVD'
+1560336611302	Move package
+1560336628963	Rename package 'part5'
+1560336639673	Rename package 'project_02_DVD_DVD'
+1560336646235	Rename package 'project_02_DVD_ADRRESS'
+1560336718696	Delete element
+1560339876783	Rename type 'SubBook'
+1560339884105	Rename type 'subBook'
+1560481670083	Rename package 'project_00_BaseballGame'
+1560481677218	Rename package 'project_01_Ready'
+1560481684432	Rename package 'project_02_1_DVD_DVD'
+1560481693776	Rename package 'project_02_2_DVD_ADRRESS'
+1560481701692	Rename package 'project_02_2_DVD_SAL'
+1560499894211	Rename type 'Dvd'

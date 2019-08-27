@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.SNSMapper">
+	<resultMap id="smVO" type="com.vo.SNS_MsgVO" />
+	<resultMap id="srVO" type="com.vo.SNS_RepleVO" />
+	
+<!-- 메시지 리스트 보여주기 -->
+	<select id="msgList" parameterType="map" resultType="com.vo.SNS_MsgVO">
+		SELECT mno, mem_id, msg, favcnt, msg_date
+		  FROM SNS_MSG
+		  WHERE 1=1
+		  ORDER BY mno desc
+	</select>	
+<!-- 리플 리스트 보여주기  -->
+      	<select id="getReple" parameterType="int" resultType="com.vo.SNS_RepleVO">
+		SELECT rno, mno, mem_id, reple, re_date
+		  FROM SNS_REPLE
+		 WHERE 1=1
+		 <if test='value>0'>
+		 	AND mno = #{value}
+		 </if> 
+	</select>
+<!-- 좋아요 -->
+	<update id="getLike" parameterType='int'>
+      UPDATE SNS_MSG
+         SET favcnt = favcnt+1
+         WHERE mno = #{mno}
+	</update>
+<!-- 새글작성 -->
+	<insert id="newAdd" parameterType="com.vo.SNS_MsgVO">
+              insert into SNS_MSG(mno, msg, msg_date, favcnt, mem_id)	<!-- mem_id--><!-- mem_id-->
+              values(#{mno},#{msg},#{msg_date}, #{favcnt}, #{mem_id})		<!-- mem_id--><!-- mem_id-->
+	</insert>
+<!-- Mno 채번 -->
+	<select id="getMNO" parameterType="int" resultType="int">
+		select nvl((select /*+index_desc(SNS_MSG SNSMSG_MNO_PK) */ mno 
+                     from SNS_MSG
+                     where rownum=1),0)+1 bm_no
+          from dual 	
+	 </select>
+<!-- 작성시간 채번 -->
+	<select id="getDate" parameterType="int" resultType="java.lang.String"> 
+		select TO_CHAR(sysdate,'YYYY-MM-DD-HH:MI:SS') from dual
+	</select>
+</mapper>

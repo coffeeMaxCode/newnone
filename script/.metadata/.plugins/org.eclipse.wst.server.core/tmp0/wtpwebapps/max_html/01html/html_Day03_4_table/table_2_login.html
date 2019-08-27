@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Log-In Page</title>
+<!--브라우저는 mine type으로 판단 / 생략가능 -->
+	<script type="text/javascript">
+		var g_temp; //전역변수
+	//자바스크립트에서 함수를 선언할 때 예약어 function
+		function login(){
+			alert("로그인호출성공");
+			//자바스크립트에서는 DOM트리에 있는 태그들 모두 다 접근 가능
+			var user_id; //지역변수
+			var user_pw;
+			//document = 모든 DOM트리의 최상위 객체
+			//document가 가르치는 객체 = 그 객체를 사용하는 페이지 자신
+			//document = 내장 객체 : 소환없이 사용가능
+			//document는 W3 표준으로 정한 객체
+			user_id = document.getElementById("mem_id").value;
+			alert(user_id);
+			user_pw = document.getElementById("mem_pw").value;
+			alert(user_pw);
+			document.getElementById("f_longin").submit(); // 서버로 전송
+		}
+	</script>
+</head>
+<body>
+<!--폼태그 안에 있는 내용만 전송됨-->
+	<form method="get" name="f_longin" action="./loginAction.html">
+	<table border="1" witdth="300px" height="120px">
+		<tr>
+			<td>Log-In Tap</td>
+		</tr>
+		<tr>
+			<td>
+		<table border="1" borderColor="orange">
+			<tr>
+				<td width="80px"><label>ID</label></td>
+				<td width="120px"><input type="text" id="mem_id" size = "10"></td>
+				<td align="center" width="100px" rowspan="2">
+					<button onClick="login()">Log-In</button>
+				</td>
+			</tr>
+			<tr>	
+				<td><label>PW</label></td>
+				<td><input type="text" id="mem_pw" size = "10"></td>
+			</tr>
+		</table>
+			</td>
+		</tr>		
+	</table>
+	</form>
+</body>
+</html>

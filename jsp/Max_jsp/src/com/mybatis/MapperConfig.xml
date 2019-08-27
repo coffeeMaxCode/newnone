@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="development">
+<!-- 기존 development -->
+  		<environment id="development">
+  			<!-- 기본 옵션 -->
+			<transactionManager type="JDBC" />
+			<!-- transaction -->
+			<!-- <transactionManager type="MANAGED" /> -->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jbc:oracle:thin:@127.0.0.1:1521:orcl11" />
+				<property name="username" value="scott" />
+				<property name="password" value="tiger" />
+			</dataSource>
+		</environment>  
+<!-- P6SPY development -->
+<!-- 		<environment id="development">
+			<transactionManager type="MANAGED" />
+			<dataSource type="JNDI">
+				<property name="data_source" value="java:comp/env/jdbc/dbPool" />
+			</dataSource>
+		</environment>
+-->
+	</environments>
+	<mappers>
+		<mapper resource="com/mybatis/mapper/member.xml" />
+ 		<mapper resource="com/mybatis/mapper/zipcode.xml" />
+		<mapper resource="com/mybatis/mapper/onLineTest.xml" /> 
+		<mapper resource="com/mybatis/mapper/Board.xml" /> 
+		<mapper resource="com/mybatis/mapper/SNS.xml" /> 
+	</mappers>
+
+</configuration>

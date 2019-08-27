@@ -1,0 +1,137 @@
+package seontalk.view;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+@SuppressWarnings("serial")
+public class MentorListSelect extends JPanel {
+	//전체화면 객체주입되는 변수
+	MainPage 		page 			= null;	
+	//상단 제목 라벨
+	JLabel 			jlb 			= new JLabel(); 
+	Font 			myfont 			= new Font("HY견고딕",Font.PLAIN,26);
+	//화면 전환 패널
+	JPanel			jp_bubble		= new JPanel();
+	//랭킹게시판 랭킹 구성
+	JPanel 			jp_grid 		= new JPanel();
+	//랭킹 패널
+	MentorRank2_select	jp_mrs		= new MentorRank2_select(1);
+	
+	public MentorListSelect(MainPage page,String name) {
+		this.page = page;
+		setLayout(null);
+		jlb.setIcon(new ImageIcon(".\\src\\images\\preview01.png"));
+		jlb.setBounds(15, 15, 300, 50);
+		jlb.setText(name);
+		jlb.setFont(myfont);
+		initGroup();
+		initButton();
+		setBackground(new Color(255,224,200));
+		add(jlb);
+	}
+	
+	///// 페이지 구성 상단 jlb // 하단 rank list
+	public void initGroup() {
+		List<MentorRank2_select> rankList = new ArrayList<>();
+		MentorRank2_select rank = null;
+		for(int i=0;i<100;i++) {
+			rank = new MentorRank2_select(i);
+			rankList.add(rank);
+		}
+		jp_grid.setLayout(new GridLayout(rankList.size()-1,1));
+		for(int i=0;i<rankList.size();i++) {
+			jp_grid.add(rankList.get(i));
+		}
+		GroupLayout layout = new GroupLayout(jp_bubble);
+		jp_bubble.setLayout(layout);
+		
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addComponent(this,75,75,75)
+//			.addComponent(rankList.get(0),220,220,220)
+			.addComponent(jp_grid)
+		);
+	}
+	
+	class MentorRank2_select extends JPanel{
+		JLabel jlb_rank = null;
+		JLabel jlb_nick = null;
+		JLabel jlb_interest = null;
+		JPanel jp_profile = null;
+		JPanel jp_blank = new JPanel();
+		String imgName = "gude_1.png";
+		public MentorRank2_select(int i) {
+			jlb_rank = new JLabel(Integer.toString(i+1));
+			jlb_nick = new JLabel(Integer.toString(i+1)+"nick");
+			jlb_interest = new JLabel(Integer.toString(i+1)+"분야");
+			jlb_rank.setOpaque(true);
+			jlb_nick.setOpaque(true);
+			jlb_interest.setOpaque(true);
+			jlb_rank.setBackground(new Color(255,224,200));
+			jlb_nick.setBackground(new Color(255,224,200));
+			jlb_interest.setBackground(new Color(255,224,200));
+			jlb_rank.setHorizontalAlignment(SwingConstants.CENTER);
+			jlb_rank.setVerticalAlignment(SwingConstants.CENTER);
+			jlb_nick.setHorizontalAlignment(SwingConstants.CENTER);
+			jlb_nick.setVerticalAlignment(SwingConstants.CENTER);
+			jlb_interest.setHorizontalAlignment(SwingConstants.CENTER);
+			jlb_interest.setVerticalAlignment(SwingConstants.CENTER);
+			jp_blank.setBackground(new Color(255,224,200));
+			
+			jp_profile = new ProfileImg(imgName,0,0,80,80);
+			
+			GroupLayout layout = new GroupLayout(this);
+			this.setLayout(layout);
+			layout.setHorizontalGroup(layout.createSequentialGroup()
+					.addComponent(jlb_rank,80,80,80)
+					.addComponent(jp_profile,80,80,80)
+					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+							.addComponent(jlb_nick,240,240,240)
+							.addComponent(jlb_interest,240,240,240)
+							)
+					);
+			layout.setVerticalGroup(layout.createSequentialGroup()
+					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+							.addComponent(jlb_rank,80,80,80)
+							.addComponent(jp_profile,80,80,80)
+							.addGroup(layout.createSequentialGroup()
+									.addComponent(jlb_nick,40,40,40)
+									.addComponent(jlb_interest,40,40,40)
+									)
+							)
+					);
+
+		}
+	}
+
+	public void initButton() {
+		
+		//이전 페이지 이벤트 
+		jlb.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getX()>=5&&e.getX()<=35&&e.getY()>=0&&e.getY()<=40) {
+					super.mouseClicked(e);
+					page.remove(page.jp_page);
+					page.jp_page = page.jp_mentor.jp_bubble;
+					page.add(page.jp_page);
+					page.revalidate();
+					page.repaint();
+				}
+			}
+		});
+	}
+}

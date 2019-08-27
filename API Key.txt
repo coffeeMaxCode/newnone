@@ -1,0 +1,9 @@
+네이버 개발자 센터 - Application Max
+Client ID
+aJRdt48vkyceRDt9cbVz
+Client Secret
+_qDLnoOlMF
+
+구글 Cloud Platform - Max Test
+
+AIzaSyBhH7WIDhSdycT9E0_8k3_rf6n3gNoClZU

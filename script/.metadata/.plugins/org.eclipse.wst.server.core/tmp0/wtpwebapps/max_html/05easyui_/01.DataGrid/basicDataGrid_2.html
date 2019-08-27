@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- 이번주 강조 사항
+html코드 , css코드 , javascript코드 위치와 역할에 대해 꼭 확인할것
+css와 html 그리고 javascript는 모두 서로 다른 언어임
+html은 전자출판을 목적으로 만들어진 언어임 
+css는 html코드에 디자인 코드가 추가되었을때 코드가 지저분해지고 화면과 디자인이 분리가 안되는 문제를 해결하기 위해 분리한 언어임을 기억할것 
+javascript코드를 활용하여 html태그를 생성할수도있고 태그를 변조하거나 태그에 대해서 이벤트 처리도 가능함.
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Basic DataGrid</title>
+<meta charset="UTF-8">
+<title>Basic DataGrid - jQuery EasyUI Demo</title>
+<link rel="stylesheet" type="text/css" href="../Stylesheet/themes/default/easyui.css"> 
+<link rel="stylesheet" type="text/css" href="../Stylesheet/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../Stylesheet/demo/demo.css">
+<script type="text/javascript" src="../Stylesheet/js/jquery.min.js"></script>
+<script type="text/javascript" src="../Stylesheet/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+	/* 하나 : ready함수는 dom구성이 완료 되었을 때, 실행 시킬 구성을 넣을 때 사용
+		둘 : funcion 안에 구성하고 싶은 내용 작성. 호출은 불가 1회성 사용			*/
+		$(document).ready(function(){
+			/*dg_dept = id값 // datagrid 테이블을 지원하는 객쳋 생성자 호출
+			좌중괄호 우중괄호 안에 datagrid 안에 처리하고 싶은 기능 담기			*/
+			$("#dg_dept").datagrid({	//구현부 = 이벤트 처리 가능
+				columns:[[
+					 {field:'deptno',title:'부서번호'	,width:150, align:'center'}
+					,{field:'dname' ,title:'부서명'     ,width:150, align:'center'}
+					,{field:'loc'	,title:'지역'		,width:100, align:'center'}					
+				]]
+			,toolbar:'#ToolBar_dept'
+			});
+		});
+	</script>
+
+     <table id="dg_dept"
+     		title="부서관리시스템" 
+    	 	style="width:700px;height:250px">
+</table>
+
+    <div id="ToolBar_dept" style="padding:2px 5px;">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+    </div>
+</body>
+</html>

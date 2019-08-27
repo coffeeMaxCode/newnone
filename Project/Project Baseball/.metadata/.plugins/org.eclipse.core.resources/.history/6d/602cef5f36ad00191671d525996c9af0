@@ -1,0 +1,29 @@
+package seontalk.model;
+
+import java.util.List;
+
+import seontalk.vo.ReplyVO;
+
+public class ReplyDao {
+
+	public int Insert(ReplyVO rVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int Update(ReplyVO rVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int Delete(ReplyVO rVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public List<Object> Select(String work, ReplyVO rVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

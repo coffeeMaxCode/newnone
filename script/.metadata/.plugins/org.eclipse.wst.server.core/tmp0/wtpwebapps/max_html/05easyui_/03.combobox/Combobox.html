@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" 	href="../../Stylesheet/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" 	href="../../Stylesheet/themes/icon.css">
+<link rel="stylesheet" type="text/css" 	href="../../Stylesheet/demo/demo.css">
+<script type="text/javascript" src="../../Stylesheet/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../Stylesheet/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+<script>
+    $(document).ready(function (){
+        $("#cb_dname").combobox({
+        	url:'../Json/dept.json'
+/*             data: [
+		        {deptno:10, dname:'인사부'},
+		        {deptno:20, dname:'영업부'}
+            ] */
+           ,valueField:'deptno'
+           ,textField:'dname'
+        });
+    });
+</script>
+<form id="f_combo">
+    <input class="easyui-combobox" id="cb_dname" name="cb_name">
+    <button onclick="send()">전송</button>
+</form>
+</body>
+</html>

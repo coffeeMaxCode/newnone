@@ -1,0 +1,6 @@
+
+Test.Ver2.1.2 with Files
+max
+max@mail.net
+
+http://localhost:8000/Board/test.mil?crud=boardList&cb_search=bm_title&keyword=Test

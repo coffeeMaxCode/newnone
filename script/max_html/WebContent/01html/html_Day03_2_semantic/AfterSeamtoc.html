@@ -1,0 +1,64 @@
+<!DOCTYPE html>	<!--타입 선언문-->
+<!--
+	시맨틱 태그는 모두 div태그와 같은 기능 수행함
+	검색엔진 or 기게적 동작들이 웹페이지에 쉽게 이해할 수 있도록 제공
+-->
+<!--
+	html5이전 : 화면레이아웃에 table 태그 주로 사용
+	html5이후 : div태그 주로 사용 > ajax기술지원
+-->
+<html>		<!--  -->
+<head>		<!--스타일시트(CSS), JavaScript 코드-->
+<meta charset="UTF-8">
+<title>HTML5 이전의 레이아웃 구성</title>
+</head>		
+<body>
+<!--웹페이지 헤더 부분-->
+	<header>
+		<h1>HTML5 header</h1>
+	</header>
+<!--웹페이지 메뉴 부분-->
+	<nav>
+		<ul>
+		<li><a href="../html_List_Day03/ListTag1.html">
+								Menu(List Tag) -1</a></li>
+		<li><a href="../html_Day02/1.InnerHTML_Test.html">
+								Menu(List Tag) -2</a></li>
+		<li><a href="../html_Day01/1.sample.jsp">
+								Menu(List Tag) -3</a></li>
+		</ul>>
+	</nav>
+<!--내용 영역-->
+	<section>
+		<h1>시맨틱 웹</h1>
+		<!--작성 내용 그대로 출력 : 띄워쓰기, 줄바꾸기 등-->
+		<pre>
+			시맨틱 태그는 모두 div태그와 같은 기능 수행함
+			검색엔진 or 기게적 동작들이 웹페이지에 쉽게 이해할 수 있도록 제공
+			html5이전 : 화면레이아웃에 table 태그 주로 사용
+			html5이후 : div태그 주로 사용 > ajax기술지원
+		</pre>
+	</section>
+	
+	<section>
+		<article>
+			<h1>HTML5 시맨틱 구조 태그</h1>
+			<!--작성 내용 그대로 출력 : 띄워쓰기, 줄바꾸기 등-->
+			<pre>
+			header	: 헤더 의미
+			nav		: 내비게이션 의미
+			section	: 여러 중심 내용 감싸는 공간
+			article : 글자가 많이 들어가는 내용
+			footer	: 페이지 하단 부분
+			</pre>
+		</article>
+	</section>
+	<!--주소-->
+<!--div태그 & span태그 : 공간을 분할하는 태그 = 시각적 변화 없음-->
+	<footer>
+	<!--span : CSS에서 주로 사용(부분적으로 디자인 변경/지정)-->
+	<address>서울특별시 금천구 가산동</address>
+	</footer>
+	
+</body>
+</html>

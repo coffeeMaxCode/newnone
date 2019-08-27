@@ -1,0 +1,7 @@
+package seontalk.view;
+
+import javax.swing.JPanel;
+
+public class MentorListPost extends JPanel {
+
+}

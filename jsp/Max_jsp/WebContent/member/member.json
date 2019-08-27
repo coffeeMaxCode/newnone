@@ -1,0 +1,65 @@
+[
+  {
+    "MEM_ID": "test",
+    "MEM_PW": "123",
+    "MEM_ZIPCODE": "25045",
+    "MEM_NAME": "이순신",
+    "MEM_ADDR": "서울시 마포구 공덕동"
+  },
+  {
+    "MEM_ID": "haha",
+    "MEM_PW": "111",
+    "MEM_ZIPCODE": "25148",
+    "MEM_NAME": "김유신",
+    "MEM_ADDR": "서울시 구로구 고척동"
+  },
+  {
+    "MEM_ID": "apple",
+    "MEM_PW": "124",
+    "MEM_ZIPCODE": "25178",
+    "MEM_NAME": "강감찬",
+    "MEM_ADDR": "서울시 금천구 가산동"
+  },
+  {
+    "MEM_ID": "jh",
+    "MEM_PW": "h",
+    "MEM_ZIPCODE": "fg",
+    "MEM_NAME": "h",
+    "MEM_ADDR": "h"
+  },
+  {
+    "MEM_ID": "asd",
+    "MEM_PW": "asd",
+    "MEM_ZIPCODE": "asd",
+    "MEM_NAME": "asd",
+    "MEM_ADDR": "asd"
+  },
+  {
+    "MEM_ID": "asdf",
+    "MEM_PW": "asdf",
+    "MEM_ZIPCODE": "asdf",
+    "MEM_NAME": "asdf",
+    "MEM_ADDR": "sadf"
+  },
+  {
+    "MEM_ID": "g",
+    "MEM_PW": "g",
+    "MEM_ZIPCODE": "g",
+    "MEM_NAME": "g",
+    "MEM_ADDR": "g"
+  },
+  {
+    "MEM_ID": "d",
+    "MEM_PW": "d",
+    "MEM_ZIPCODE": "d",
+    "MEM_NAME": "d",
+    "MEM_ADDR": "d"
+  },
+  {
+    "MEM_ID": "a",
+    "MEM_PW": "a",
+    "MEM_ZIPCODE": "d",
+    "MEM_NAME": "a",
+    "MEM_ADDR": "d"
+  }
+]

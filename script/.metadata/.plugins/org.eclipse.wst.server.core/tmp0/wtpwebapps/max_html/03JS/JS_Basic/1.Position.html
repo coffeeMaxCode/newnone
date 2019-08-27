@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- 
+    자바스크립트 코드가 올 수 있는 위치는?
+       1) script 태그 내부 영역
+       	  - 내부 영역 사용시 위치에 따라 영향 있음 (속성 값 변경 안됨)
+       	    : 선언 후, 사용 해야함
+       	    : JavaScript 절차지향적 = 순서대로 처리
+       2) 외부 스크립트
+       3) 이벤트 핸들러
+       4) URL 속성
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <script type="text/javascript" src="../myTestScript.js">
+    </script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <script type="text/javascript" width="900" hight="200">
+//    alert("자바 스크립트 영역")
+    // document 가 참조하는 것은 최상위 객체 = 작성중인 본 문서
+    //document.img1.width = 900;
+    //document.img1.hight = 200;
+    </script>
+    <img name="img1" src="../../image/minions_nude.jpg">
+    <button onClick="testlogin('test','123')">외부스크립트 테스트</button>
+    <a href="javascript:login('haha','kkk')">URL속성에 사용가능</a>
+</body>
+</html>

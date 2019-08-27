@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*html태그를 자바스크립트 코드를 통해 접근&제어
+자바스크립트도 오픈소스 존재 
+(자바스크립트 프레임 워크로 발전 - node.js angluar.js react.js vue.js)
+document = 모든 태그의 상위 객체 > document_1.html */
+    function send(){
+        var temp = document.getElementById("msg");
+//        var temp2 = $("#msg");
+        alert(temp);
+        temp.innerHTML = "<table border='1'><tr><td>there</td></tr></table>";
+    }
+</script>
+</head>
+<body>
+<style>
+    #upper{
+        border: 1px solid red;
+    }
+</style>
+<script type="text/javascript">
+/* write 함수 = 브라우저에 문자열 출력 */
+    document.write("<div id = 'upper'>");
+    document.write("document","<font color='red'>","html5","</font>","css");
+    document.write("</div>");
+</script>
+<div id="msg"><!--시각적인 변화가 없는 태그-->
+    Here
+</div>
+<button onclick="send()">Click</button>
+</body>
+</html>

@@ -1,0 +1,22 @@
+List<MentorRank2_t1> rankList = new ArrayList<>();
+		MentorRank2_t1 rank = null;
+		for(int i=0;i<100;i++) {
+			rank = new MentorRank2_t1(i);
+			rankList.add(rank);
+		}
+		jp_grid.setLayout(new GridLayout(rankList.size()-1,1));
+		for(int i=1;i<rankList.size();i++) {
+			jp_grid.add(rankList.get(i));
+		}
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(rankList.get(0))
+				.addComponent(jp_grid)
+			)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addComponent(rankList.get(0),220,220,220)
+			.addComponent(jp_grid)
+		);

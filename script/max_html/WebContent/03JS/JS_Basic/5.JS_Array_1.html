@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열</title>
+</head>
+<body>
+    <script>
+        var days = ["월","화","수","목","금","토","일"];
+        for(var i=0;i<days.length;i++){
+            document.writeln(days[i],"<br>");
+        }
+        
+    var result =[
+                     ["kim","lee","chu"]
+                    ,["oracle","java","HTML"]
+                    ,[80,90,70]
+                ];
+
+    for(var i=0;i<result.length;i++){
+        for(var j=0;j<result[i].length;j++){
+            document.write(result[i][j],"<br>");
+        }
+    }
+    
+    //형전환 함수
+    var score1 ="90";
+    document.write("<hr>");
+    document.write("<h2>형전환 함수</h2>");
+    document.write(parseInt(score1)+50);
+    document.write("<br>");
+    document.write(name.toString());
+    var isView = new Boolean(false);
+    var bool = isView.valueOf();
+    if(!bool){
+        document.write("true")
+    }
+
+    </script>
+</body>
+</html>

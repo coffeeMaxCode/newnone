@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM-속성처리</title>
+<script>
+	function methodA(){
+		
+	}
+</script>
+</head>
+<body onLoad="methodA()">
+<!-- document.write()역할,기능, 왜? -->
+<script type="text/javascript">
+/* onload는 그 document(dom_attr.html)가 DOM구성 완료했을 때 실행 */
+	window.onload = function(){//익명함수
+		var img = document.createElement("img");
+		//속성 추가(지정) setAttribute([1],[2])
+		img.setAttribute("src","../../image/minions_nude.jpg");
+		img.setAttribute("width",500);
+		img.setAttribute("height",400);
+		alert(img.getAttribute("width"));//500
+		//body안에 노드를 추가
+		document.body.appendChild(img);
+	}
+</script>
+11
+<img src="../../image/imgtest.jpg" width="300" height="200">
+22
+</body>
+</html>

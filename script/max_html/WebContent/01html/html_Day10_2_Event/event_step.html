@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 전달 순서 - 이벤트 버블링, 이벤트 캡쳐링</title>
+	<style type="text/css">
+		*{border: 3px solid peru;}</style>
+</head>
+<body>
+	<div onclick="alert('outer-div')">outer1
+		<div onclick="alert('inner-div')">inner1
+			<h1 onclick="alert('header')">header1
+				<p onclick="alert('contents')">Text-contents</p>
+			header2</h1>
+		inner2</div>
+	outer2</div>
+
+</body>
+</html>

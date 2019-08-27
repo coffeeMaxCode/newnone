@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수의 활용</title>
+	<script>
+	function login(){
+   	 	var db_id = 'test';
+    	var db_pw = '123';
+   	 	var db_name = "texing";
+    	var u_id = document.getElementById("mem_id").value;
+    	var u_pw = document.getElementById("mem_pw").value;
+    	
+    	if(u_id==db_id) {
+        	if(u_pw==db_pw){
+            document.write(db_name);
+
+        	}else{
+          	alert("비번이 틀립니다.");
+          	return;
+        	}
+    	}else{
+         	alert("아이디가 존재하지 않습니다.");
+         	return;//login함수 탈출 
+    	}
+   }
+	</script>
+</head>
+<body>
+ 	<style>
+    	input[type=text] {background:green}
+     	input[type=password] {background:red}
+ 	</style>
+    <header>변수의 활용</header>
+    
+    <section>
+       <article>
+          <h1>제목</h1>
+          <pre>사용자 입력값</pre>
+       </article>
+    </section>
+    <form>
+       <input type="text" id="mem_id" name="mem_id">
+       <input type="password" id="mem_pw" name="mem_pw">
+       <button onClick ="login()">Log-in</button>
+
+   </form>
+
+</body>
+</html>

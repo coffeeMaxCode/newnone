@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Map Service API 활용</title>
+</head>
+
+<body>
+	<div id="map" style="height :500px"></div>
+	<script type="text/javascript">
+		function initMap(){
+			//alert("실행 확인용 알람");
+			//레스토랑 위치를 위도와 경도로 표시
+			var curLatLng ={
+					lat		:37.573600
+					,lng	:126.989440
+			};
+			/* 구글에서 제공하는 Map객체 생성
+			      지도 출력시 중앙의 위치를 설정하고 내가 보고 싶은 위치는 별도로 추가 가능
+			   Map 속성에는 생성한 Map객체를 치환
+			   Zoom속성에 따라 상세도 결정								*/
+			var map = new google.maps.Map(document.getElementById("map"),{
+				 center		: curLatLng
+				,positioin	: curLatLng
+				,map		: map
+				,zoom		: 15
+				
+			});
+		}
+	</script>
+<!-- function이 먼저 선언되어야함 -->
+<script type="text/javascript" 
+		src="http://maps.googleapis.com/maps/api
+			/js?key=AIzaSyBhH7WIDhSdycT9E0_8k3_rf6n3gNoClZU
+			&callback=initMap">
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery로 변경 - 매초 마다 갱신 처리 like 네이버 인기검색어</title>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-3.4.1.js">
+</script>
+</head>
+<body>
+	<h1 id='news1'></h1>
+	<h1 id='news2'></h1>
+
+<!-- 	<script type="text/javascript">
+	$.noConflict();
+	var J = jQuery;
+		J(document).ready(function(){
+			J("#news1").html("<font color='red'>test1</font>");
+			$("#news2").test("<b>test2</b>");
+		});
+	</script> -->
+
+	<!-- 아이디 사용하려면 앞에 # 추가할것 -->
+	<!-- $를 사용하려면 반드시 jquery-3.4.1.js 임포트 할것. -->
+	
+	<script type="text/javascript">
+			var news1 = $('#news1');
+			//매 1초(ms 단위) 마다 함수 실행하기
+			setInterval(function(){
+				news1.html(new Date().toString());
+			},1000);
+	</script>
+
+</body>
+</html>

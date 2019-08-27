@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax-powered Coffee Maker</title>
+<link rel="stylesheet" type="text/css" href="coffee.css?12" />
+<script language="javascript">
+	var request1 = createRequest();
+	var request2 = createRequest();
+
+	function createRequest() {
+		try {
+			xhrObject = new XMLHttpRequest();
+		} catch (trymicrosoft) {
+			xhrObject = null;
+		}
+		if (xhrObject == null) {
+			alert("비동기 통신객체 생성 실패!")
+		} else {
+			return xhrObject;
+		}
+	}
+
+	function getSize() {
+		//var arr = []; var array = new Array[]
+		//사이즈 > 라디오버튼 처리 ; 버튼이 같은 이름 = 배열로 전환
+		//폼태그 안 라디오 버튼 갯수 = 3
+		var sizeGroup = document.forms[0].size;
+		for (var i = 0; i < sizeGroup.length; i++) {
+			if (sizeGroup[i].checked == true) {
+				return sizeGroup[i].value;
+			}
+		}
+	}
+
+	function getBeverage() {
+		//메뉴 > 라디오버튼 처리 ; 버튼이 같은 이름 = 배열로 전환
+		//폼태그 안 라디오 버튼 갯수 = 3
+		var BeverageGroup = document.forms[0].beverage;
+		for (var i = 0; i < BeverageGroup.length; i++) {
+			if (BeverageGroup[i].checked == true) {
+				return BeverageGroup[i].value;
+			}
+		}
+	}
+
+	function sendRequest(xhrObject, url) {
+		xhrObject.open("GET", url, true);
+		xhrObject.onreadystatechange = serveDrink;
+		xhrObject.send(null);
+	}
+
+	function serveDrink() {
+		if (request1.readyState == 4) {
+			if (request1.status == 200) {
+				var res = request1.responseText;
+				var machine = res.substring(0, 1);//1
+				var name = res.substring(1, res.length);
+				if (machine == '1') {
+					var coffeemaker1 = document
+							.getElementById("coffmaker1Status")
+					replaceText(coffeemaker1, "Idle");
+				}
+				alert(name + ", ur coffe is ready")
+				request1 = createRequest();
+			}
+		} else if (request2.readyState == 4) {
+			if (request2.status == 200)
+				var res = request2.responseText;
+			var machine = res.substring(0, 1);//1
+			var name = res.substring(1, res.length);
+			if (machine == '2') {
+				//주문한 커피가 나왔으므로 머신 상태를 idle로 변경
+				var coffeemaker2 = document
+						.getElementById("coffmaker2Status")
+				replaceText(coffeemaker2, "Idle");
+			}
+			alert(name + ", ur coffe is ready")
+			request2 = createRequest();
+		}
+	}
+
+	function orderCoffee() {
+		//손님이름, 컵사이즈, 음료종류
+		var name = document.getElementById("name").value;
+		var size = getSize();
+		var beverage = getBeverage();
+
+		alert(name + "님 " + beverage + ", " + size + "주문이요");
+
+		var coffeemaker1 = document.getElementById("coffmaker1Status");
+		var status = getText(coffeemaker1);
+		if (status == "Idle") {
+			replaceText(coffeemaker1, "제조 중" + name + "님 " + beverage + "("
+					+ size + ")");
+			//지난 주문 초기화
+			document.forms[0].reset();
+			//jsp페이지 url
+			var url = "./coffeeMaker.jsp?coffeeMaker=1&name=" + name
+					+ "&timestamp=" + new Date().getTime();
+			sendRequest(request1, url);
+		} else {
+			var coffeemaker2 = document.getElementById("coffmaker2Status");
+			var status = getText(coffeemaker2);
+			if (status == "Idle") {
+				replaceText(coffeemaker2, "제조 중" + name + "님 " + beverage + "("
+						+ size + ")");
+				//지난 주문 초기화
+				document.forms[0].reset();
+				//jsp페이지 url
+				var url = "./coffeeMaker.jsp?coffeeMaker=2&name=" + name
+						+ "&timestamp=" + new Date().getTime();
+				sendRequest(request2, url);
+			} else {
+				alert("plz wait for seconed")
+			}
+
+		}
+	}
+
+	function getText(el) {
+		var text = "";
+		if (el != null) {
+			if (el.childNodes) {
+				for (var i = 0; i < el.childNodes.length; i++) {
+					var childNode = el.childNodes[i];
+					if (childNode.nodeValue != null) {
+						text = text + childNode.nodeValue;
+					}
+				}
+			}
+		}
+		return text;
+	}
+
+	function clearText(el){
+		if(el!=null){
+			if(el.childNodes){
+				for(var i=0; i<el.childNodes.length;i++){
+					var childNodes = el.childNodes[i];
+					el.removeChild(childNodes);
+				}
+			}
+		}
+	}
+
+	function replaceText(el, text) {
+		if (el != null) {
+			//기존 노드에 들어있는 값은 초기화
+			clearText(el);
+			//새로운 텍스트 노드를 추가
+			var newNode = document.createTextNode(text);//12
+			el.appendChild(newNode);
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div id="header">
+		<h1>Ajax-powered Coffee Maker</h1>
+	</div>
+	<div id="wrapper">
+		<div id="coffeemaker1">
+			<h2>Coffee Maker #1</h2>
+			<p>
+				<img src="images/CoffeeMaker1.gif" alt="Coffee Maker #1" />
+			</p>
+			<div id="coffmaker1Status">Idle</div>
+		</div>
+
+		<div id="coffeeorder">
+			<p>
+				<img src="images/coffeeMugWithBeans.gif" alt="Coffee Pot 1" />
+			</p>
+			<h2>Place your coffee order here:</h2>
+			<div id="controls1">
+				<form action="#">
+					<p>
+						Name: <input type="text" name="name" id="name" />
+					</p>
+					<h3>Size</h3>
+					<p>
+						<input type="radio" name="size" value="tall">tall</input>&nbsp;&nbsp;
+						<input type="radio" name="size" value="Grande" checked="true">Grande</input>&nbsp;&nbsp;
+						<input type="radio" name="size" value="Venti">Venti</input>
+					</p>
+					<h3>Beverage</h3>
+					<p>
+						<input type="radio" name="beverage" value="americano"
+							checked="true">Americano</input>&nbsp;&nbsp; <input type="radio"
+							name="beverage" value="latte">Latte</input>&nbsp;&nbsp; <input
+							type="radio" name="beverage" value="cappucino">Cappucino</input>
+					</p>
+					<p>
+						<input type="button" onClick="orderCoffee()" value="Order Coffee" />
+					</p>
+				</form>
+			</div>
+		</div>
+		<div id="coffeemaker2">
+			<h2>Coffee Maker #2</h2>
+			<p>
+				<img src="images/CoffeeMaker2.gif" alt="Coffee Maker #2" />
+			</p>
+			<div id="coffmaker2Status">Idle</div>
+		</div>
+		<p id="clear"></p>
+	</div>
+</body>
+</html>

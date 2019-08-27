@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 반응형 웹 -->
+<meta name="viewport" content="width=device-width,  initial-scale=1">
+<title>부트스트랩 API를 활용한 네비게이션 구현</title>
+<!-- CSS를 외부에서 참조할때 -->
+<!-- CSS뒤에 ? 붙인 이유 = get 방식은 인터셉트 일어남 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+</head>
+<body>
+<style type="text/css">
+/*스타일 시트 추가 방법1 : 인라인 방식*/
+</style>
+<!--[NAV 시작]--------------------------------------------------------------->
+	<nav class="navbar navbar-default">
+		<div class="container-fruid">
+            <!-- 사이트 제목 -->
+			<div class="navbar-header">  
+				<a class="navbar-brand" href="#">My Class note</a>
+			</div>
+		<!-- 버거 아이콘 -->
+		<div id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#">소개<span class="sr-only"></span></a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" 
+					aria-haspopup="true" aria-expanded="false"> 
+					수업노트<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">오라클노트</a></li>
+						<li><a href="#">JAVA 노트</a></li>
+						<li><a href="#">HTML5노트</a></li>
+					</ul>
+					</li>	
+			</ul>
+			</div> 
+			</div>
+		<div> 
+          <!--폼태그 추가 하기 시작 -서버전송위해  -->
+          <form class="navbar-form navbar-right">
+             <div class="form-group">
+                <input type="text" class="form-control" placeholder="내용을 입력하세요.">
+             </div>
+             <button type="submit" class="btn btn-default">검색</button>
+          </form>
+          <!--  -->
+         </div>  
+
+	</nav>
+
+	<!--[콘텐츠 시작]------------------------------------------------------------>
+    <div class="container">
+        <div class="row">
+            <!-- 12개 범위에서 맞추어 쓰기 -->
+                <div class="col-sm-4"><h4>오라클노트</h4></div>
+                <div class="col-sm-4"><h4>JAVA 노트</h4></div>
+                <div class="col-sm-4"><h4>HTML5노트</h4></div>
+        </div>
+    </div>
+
+<!--[푸터 시작]-------------------------------------------------------------->
+    <footer style="background-color: #000000; color: #ffffff">
+    <!-- class 속성 : css적용 시 사용
+     container 속성 : 부트스트랩에서 화면을 구성하는 기본단위 
+           row 속성 : 1개의 로우 추가시 사용, 컬럼을 12개로 분할 가능  -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">&nbsp;</div>
+                <div class="col-sm-8" style="text-align : center;">
+                    <h5>회사소개 | 회사연역 | 회원가입 |오시는 길</h5></div>
+                <div class="col-sm-2">
+                    <h5>Copyright &copy; 2019&nbsp;&nbsp;by&nbsp;Max</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" 
+            src="https://code.jquery.com/jquery-3.1.1.min.js">
+    </script>
+    <script type="text/javascript" src="../../js/bootstrap.js"></script>
+</body>
+</html>

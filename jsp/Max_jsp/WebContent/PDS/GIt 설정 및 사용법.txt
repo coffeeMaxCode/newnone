@@ -1,0 +1,94 @@
+* Git 설정법
+
+1) 로컬 저장소 생성
+git init
+
+2) git 웹 저장소 주소 연결
+ git remote add origin http://github.com/사용자명/저장소명
+
+3) git 사용자 설정
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+*수업자료 연결
+git init
+git remote add origin http://github.com/slalom0914/java52.git
+git pull origin master
+
+*오류시 강제 병합
+git fetch --all
+git reset --hard origin/master
+git pull origin master
+
+*내 git 연결
+git init
+git remote add origin https://github.com/maxmillionkim/workspace.git
+git config --global user.email "bada0105@naver.com"
+git config --global user.name "maxmillionkim"
+git pull origin master
+
+
+*maxmillionkim
+bada0105@naver.com OR badaht92@gmail.com
+*bada0105
+maxmillionkim92@gmail.com
+
+*웅기 git 주소
+git init
+git remote add origin https://github.com/bigbang-cuk/seontalk.git
+git config --global user.email "bada0105@naver.com"
+git config --global user.name "maxmillionkim"
+git pull origin master
+
+===========================================
+* 저장소 복제
+
+1)로컬 저장소를 복제
+git clone /로컬/저장소/경로
+
+2)원격 서버의 저장소를 복제
+git clone 사용자명@호스트:/원격/저장소/경로
+
+===========================================
+*웹 저장소에 파일 올리기
+
+1) 웹 파일 올리기
+git add .
+
+2) 웹 파일 올리기
+* 특정 파일
+git add [파일명.확장자]
+* 전부
+git add *
+
+3) 변경내용 확정 (HEAD에 반영)
+git commit -m "이번 확정본에 대한 설명"
+
+4)  서버 저장소에 저장
+git push origin +master
+4-1) 서버에 새로운 파일 저장 (파일이 서버에서 불러온 것이 아니라면)
+git remote add origin <원격 서버 주소>
+
+===========================================
+*웹 저장소 파일 내려받기
+
+1) 레포의 파일 내려받기 > 내려 받을 때는 여기만
+ git pull origin master
+
+===========================================
+*로컬 저장소 초기화
+
+1) 로컬 저장소의 .git 디렉토리를 삭제한다.
+
+2) git bush
+로컬 저장소 git init
+
+3) 초기화에 등록될 파일을 추가 및 커밋한다.
+git add .
+git commit -m 'Initial commit'
+
+4) 초기화 시킬 원격 저장소를 추가시킨다.
+git remote add origin <url>
+
+5) 현재 상태를 원격저장소에 적용시킨다.
+git push --force --set-upstream origin master

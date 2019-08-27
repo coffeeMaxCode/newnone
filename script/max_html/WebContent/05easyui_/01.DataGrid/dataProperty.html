@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="../../Stylesheet/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../Stylesheet/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../../Stylesheet/demo/demo.css">
+<script type="text/javascript" src="../../Stylesheet/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../Stylesheet/js/jquery.easyui.min.js"></script>
+<head>
+<meta charset="UTF-8">
+<title>DataGrid_data 속성</title>
+</head>
+<body>
+    <script>
+    $(document).ready(function(){
+        $("#dg_test").datagrid({
+            columns:[[
+                {field:'f1',title:'code',width:100},
+                {field:'f2',title:'name',width:100}
+    		]]
+	        ,data: [
+		        {f1:'value11', f2:'value12'},
+		        {f1:'value21', f2:'value22'},
+		        {f1:'value31', f2:'value32'}
+            ]
+        });
+        
+        $("#dg_dept").datagrid({
+            columns:[[
+                {field:'deptno',title:'부서번호',width:100},
+                {field:'dname',title:'부서명',width:100}
+    		]]
+	        ,data: [
+		        {deptno:10, dname:'영업부'},
+		        {deptno:20, dname:'총무부'},
+		        {deptno:30, dname:'개발부'}
+            ]
+        });
+        
+        $("#POPQ1").datagrid({
+        	url:'../Json/chatList.json',
+            columns:[[
+                {field:'NickName',title:'NickName',width:100},
+                {field:'Age',title:'Age',width:100}
+    		]]
+        });
+    });
+    </script>
+    <table id=dg_test></table> 
+    <table id=dg_dept></table>
+     
+     <table id="POPQ1"	title="JSon불러오기"></table>
+    
+</body>
+</html>

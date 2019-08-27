@@ -1,0 +1,42 @@
+package seontalk.model;
+
+import java.util.List;
+import java.util.Vector;
+
+import seontalk.vo.ChatLogVO;
+import seontalk.vo.ChatVO;
+import seontalk.vo.MemberVO;
+import seontalk.vo.PostVO;
+import seontalk.vo.ReplyVO;
+
+public class SelectLogic {
+	public List<Object> ConnectDao(String work,Object pVO) {
+		List<Object> VOList = null;
+		if(pVO instanceof MemberVO) {
+			MemberVO rVO = (MemberVO)pVO;
+			MemberDao memDao = new MemberDao();
+			VOList = memDao.Select(work,rVO);
+		}
+		else if(pVO instanceof ChatVO) {
+			ChatVO rVO = (ChatVO)pVO;
+			ChatDao chatDao = new ChatDao();
+			VOList = chatDao.Select(work,rVO);
+		}
+		else if(pVO instanceof ChatLogVO) {
+			ChatLogVO rVO = (ChatLogVO)pVO;
+			ChatLogDao logDao = new ChatLogDao();
+			VOList = logDao.Select(work,rVO);
+		}
+		else if(pVO instanceof PostVO) {
+			PostVO rVO = (PostVO)pVO;
+			PostDao postDao = new PostDao();
+			VOList = postDao.Select(work,rVO);
+		}
+		else if(pVO instanceof ReplyVO) {
+			ReplyVO rVO = (ReplyVO)pVO;
+			ReplyDao replyDao = new ReplyDao();
+			VOList = replyDao.Select(work,rVO);
+		}
+		return VOList;
+	}
+}

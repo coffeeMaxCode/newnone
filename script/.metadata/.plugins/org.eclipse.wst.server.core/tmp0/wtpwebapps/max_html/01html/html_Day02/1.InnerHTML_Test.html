@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>InnerHTTML에 관하여</title>
+<!-- 
+mine type
+브라우저는 mine타입 판정
+main type
+text/javascript  text/pain  txt/
+img/png  image/gif  image/jpg
+video/avi  video/mp4
+sub  type
+ -->
+ <style type ="text/css">
+    div{
+  	    display:block;
+  	    width : 200px;
+  	    height: 120px;
+        background-color: blue;
+    }
+
+    span{
+    	display:inline-block; /*인라인 : 크기 지정 안됨*/
+        background-color: red;
+    }
+
+</style>
+     <script type="text/javascript">
+        var msg="<table border ='1' width='300px' height='100px'>";
+            msg+="<tr><td>자바</td></tr>";
+            msg+="</table>";
+        function test(){
+            // 스크립트 코드
+        document.getElementById("d_msg").innerHTML = msg;
+    }
+</script> 
+</head>
+<body>
+    <!-- 인라인 속성과 블럭속성 -->
+
+    <!-- 블럭속성 -->
+    test 
+    <!--Division의 약자로, 레이아웃을 나누는데 사용,줄바꿈-->
+    <div id="d_msg">
+    DIV1
+    </div> 
+    <div style="width:100px; height:100px;
+    	 background-color:#CF0">DIV2</div>
+    word
+    1111
+    <!--SPAN 레이아웃을 나누는데 사용,줄바꿈 없음-->
+    <span>
+    SPAN
+    </span>
+    2222
+    <input type="button" value="테스트" onClick="test()">
+</body>
+</html>

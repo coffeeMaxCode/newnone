@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery로 변경 - 매초 마다 갱신 처리 like 네이버 인기검색어</title>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-3.4.1.js">
+</script>
+</head>
+<body>
+	<h1 id='news1'></h1>
+	<h1 id='news2'></h1>
+
+	<script type="text/javascript">
+	$.noConflict();
+	var J = jQuery;
+	//$는 jquery()대신 사용되는 예약어
+	//만일 서로 다른 javascript오픈소스를 사용할 경우 그 기호가 겹치거나 하여 충돌이 일어날 수 있다.
+		J(document).ready(function(){
+			J("#news1").html("<font color='red'>test1</font>");
+			// $("#news2").test("<b>test2</b>");
+		});
+	</script>
+
+</body>
+</html>

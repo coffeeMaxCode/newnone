@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!--
+head 영역에는 CSS소스 or JavaScript소스 추가 가능
+title 태그 사용 가능
+브라우저 역할
+html 문서에 대한 인프리터의 역할 > 통역
+태그는 출력하지 않고 내용부분만 내보냄
+**특징
+컴파일 하지 않음> 문법체크 하지 않음
+런타임시 모든게 결정 > 에러잡기 불편
+java 언어 보다 완성도 떨어짐
+
+태그는 열린태그<>와 닫힌태그</>로 존재
+태그는 중첩해서 사용 가능
+
+태그 사용규칙
+- 대소문자 구분하지 않음
+- 종료 태그 사용시 반드시 </태그이름>
+- 태그 안, 띄어쓰기 금지
+- 시작태그와 종료태그 사이 태그 중첩사용 가능
+- 브라우저 해석하지 못하는 태그는 무시되거나 에러발생
+
+-내용추가
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="author" content ="Max"> <!--검색기능-->
+<meta name="title" content ="Million">
+<meta name="date" content ="2019-06-04">
+<title>브라우저 예시</title>
+
+</head>
+<body>
+	<!--화면 처리내용-->
+	html<br>
+	css<br>
+	javascript
+<h1>First seen html</h1>
+문자열<!--태그 이름은 없고 값으로 존재-->
+	<li>
+		<font color="red">
+		문      자 &nbsp;&nbsp;&nbsp;&nbsp;열
+		</font>
+	</li>
+<hr>
+특수문자
+&lt;  &gt;  &quot;  &amp;<br>
+<a href="https://www.naver.com/">네이버</a><br>
+<a href="http://192.168.0.21:8000/html_Day01/0.index.html">서버테스트 페이지</a>
+<br>
+<!--
+	url(Uniform Resource Locator) 경로
+	1)절대경로 : 수정 어려움 : 프로토콜(http[s]) 부터 도메인(ip주소), 폴더이름, 페이지이름
+	2)상대경로 : 현재 내가 있는 곳을 기준으로 경로 설정
+-->
+</body>
+</html>

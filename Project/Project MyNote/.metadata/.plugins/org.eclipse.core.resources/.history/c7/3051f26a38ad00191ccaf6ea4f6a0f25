@@ -1,0 +1,110 @@
+package seontalk.view;
+
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import seontalk.vo.MemberVO;
+
+public class Chat extends JPanel{
+	MainPage 		page 			= null;	//전체화면 객체주입되는 변수
+	String			name			= null;
+	JLabel 			jlb 			= new JLabel(); //상단 제목 라벨
+	JButton 		jbtn_set 		= new JButton();
+	JPanel			jp_bubble		= new JPanel();
+	JPanel			jp_grid			= new JPanel();
+	JScrollPane 	jsp_bubble		= new JScrollPane(jp_grid
+								,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+								,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	Theme theme = new Theme();
+	public Chat(MainPage page,String name) {
+		this.page = page;
+		this.name = name;
+		init();
+	}
+	public void init() {
+		setLayout(null);
+		initLabel();
+		initButton();
+		initGroup();
+		initScroll();
+		jsp_bubble.setBorder(null);
+		setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		add(jlb);
+		add(jbtn_set);
+		
+	}
+	public void initLabel() {
+		if(Theme.BLACK.equals(page.memVO.getTheme())) {
+			jlb.setIcon(new ImageIcon(ProfileImg.imgPath+"chat02_rev.png"));
+		}
+		else {
+			jlb.setIcon(new ImageIcon(ProfileImg.imgPath+"chat02.png"));
+		}
+		jlb.setBounds(15, 15, 200, 50);
+		jlb.setText(name);
+		jlb.setFont(new Font(page.memVO.getFont(),Font.PLAIN,26));
+		jlb.setForeground(theme.setFontColor(page.memVO.getTheme()));
+		
+	}
+	public void initButton() {
+		if(Theme.BLACK.equals(page.memVO.getTheme())) {
+			jbtn_set.setIcon(new ImageIcon(ProfileImg.imgPath+"setting01_rev.png"));
+		}
+		else {
+			jbtn_set.setIcon(new ImageIcon(ProfileImg.imgPath+"setting01.png"));
+		}
+		jbtn_set.setBounds(330, 20, 50, 40);
+		jbtn_set.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jbtn_set.setRolloverEnabled(false);
+		jbtn_set.setBorder(null);
+		jbtn_set.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+	}
+	public void initGroup() {
+		List<ChatList> chatList = new ArrayList<>();
+		ChatList chat = null;
+		for(int i=0;i<page.userList.size();i++) {
+			MemberVO pVO = (MemberVO)page.userList.get(i);
+			chat = new ChatList(page,pVO);
+			chatList.add(chat);
+		}
+		jp_grid.setLayout(new GridLayout(chatList.size(),1));
+		for(int i=0;i<chatList.size();i++) {
+			jp_grid.add(chatList.get(i));
+		}
+		GroupLayout layout = new GroupLayout(jp_bubble);
+		jp_bubble.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(this)
+				.addComponent(jsp_bubble)
+			)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addComponent(this,75,75,75)
+			.addComponent(jsp_bubble)
+		);
+	}
+	public void initScroll() {
+		UIDefaults defaults = UIManager.getDefaults();
+	    defaults.put("ScrollBar.width", new Integer("8"));
+	    jsp_bubble.getVerticalScrollBar().setUnitIncrement(20);
+	}
+}
+

@@ -1,0 +1,13 @@
+package part5;
+
+public class T10_DeleteLogic {
+	T05_AddressBookInterface aBookInterface = new T04_AddressBookDao();
+	public T03_AddressVO addressDelete(T03_AddressVO paVO) {
+		System.out.println("DeleteLogic addressDelete 호출 성공");
+		T03_AddressVO raVO = new T03_AddressVO();
+		raVO.setStatus(0);
+		return raVO;
+	
+	}
+
+}

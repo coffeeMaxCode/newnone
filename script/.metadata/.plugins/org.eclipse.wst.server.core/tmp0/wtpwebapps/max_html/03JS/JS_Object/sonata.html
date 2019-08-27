@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>생성자 함수와 객체 활용 </title>
+    <script>    //전역변수 > super, this 사용 가능
+        var speed = 0;
+        var carName = "";
+        var wheelNum = 0;
+
+        function sonata(){
+            this.speed = 50;
+            this.carName = "19.Sonata";
+            this.wheelNum = 4;
+        }
+        function Tivoli() {
+            this.carColor = red;
+            this.carName = "19.Tivoli";
+            this.wheelNum = 4;
+        }
+        function speedup(){
+            speed = speed+1
+            console.log("SP 호출 성공")
+        }
+        function Tivoli(carColor, carName, wheelNum){
+            this.carColor = carColor;
+            this.carName = carName;
+            this.wheelNum = wheelNum;
+            this.method = speedup;
+            this.method2 = function(){
+                document.write("익명의 함수를 실행");
+            }
+        }
+
+        
+    </script>
+</head>
+<body>
+    <script>
+        var myCar = new sonata();
+        document.writeln(myCar.carName);
+        var minCar =new sonata();
+        minCar.speed = 100;
+        document.write(minCar.speed);
+        var suv = new Tivoli("pink","tivoli",4);
+
+        suv.method();
+        document.write("speedup 호출 후 >"+suv.speed);
+
+        for (pro in suv){   // suv["carName"] = suv.carNames
+            document.write(pro+"="+suv[pro]+"<br>");
+        }
+
+        suv.method2(); //무명함수 호출 : 1회성 재사용 불가
+
+    </script>
+
+</body>
+</html>

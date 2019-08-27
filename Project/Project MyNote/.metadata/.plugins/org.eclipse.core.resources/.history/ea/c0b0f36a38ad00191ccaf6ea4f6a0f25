@@ -1,0 +1,166 @@
+package seontalk.view;
+
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
+
+import seontalk.vo.MemberVO;
+
+public class ChatRoom extends JFrame {
+	MainPage page;
+	MemberVO user;
+	JPanel			jp_bubble  = new JPanel();
+	StyledDocument  sd_display = new DefaultStyledDocument(new StyleContext());
+	JTextPane 		jtp_chat   = new JTextPane(sd_display);
+	JScrollPane 	jsp_chat   = new JScrollPane(jtp_chat
+							 	 ,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+							 	 ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	StyledDocument  sd_write = new DefaultStyledDocument(new StyleContext());
+	JTextPane 		jtp_write  = new JTextPane(sd_write);
+	JScrollPane 	jsp_write   = new JScrollPane(jtp_write
+								,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+								,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	JButton 		jbtn_send  = new JButton("보내기");
+	ProfilePanel	jp_prof	   = null;
+	Theme			theme 	   = new Theme();
+	public ChatRoom(MainPage page, MemberVO user) {
+		this.page = page;
+		this.user = user;
+		init();
+	}
+	
+	public void init() {
+		jp_prof = new ProfilePanel(page,user);
+		setTitle("채팅방");
+		setSize(400, 650);
+		initAction();
+		initKey();
+		initLocation();
+		initScroll();
+		initGroup();
+		jtp_chat.setEditable(false);
+		jtp_chat.setEnabled(false);
+		jtp_chat.setBackground(theme.setBackgroundColor(page.memVO.getTheme()));
+		jsp_chat.setBorder(null);
+		add(jp_bubble);
+		setResizable(false);
+		setVisible(true);
+	}
+	public void sendMessage() {
+		
+	}
+	public void initAction() {
+		jbtn_send.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String text = jtp_write.getText();
+				ChatPartner cu = new ChatPartner(page,text);
+				try {
+					jtp_chat.insertComponent(cu);
+					sd_display.insertString(sd_display.getLength(), "\n", null);
+					jtp_write.setCaretPosition(sd_write.getLength());
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				jtp_write.setText("");
+			}
+		});
+	}
+	public void initKey() {
+		jtp_write.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.isShiftDown()) {
+					if(10==e.getKeyCode()) {
+						try {
+							sd_write.insertString(sd_write.getLength(), "\n", null);
+							jtp_write.setCaretPosition(sd_write.getLength());
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
+					}
+				}
+				else {
+					if(10==e.getKeyCode()) {
+						String text = jtp_write.getText();
+						try {
+							ChatUser cu = new ChatUser(page,text);
+							jtp_chat.insertComponent(cu);
+							sd_display.insertString(sd_display.getLength(), "\n", null);
+							jtp_write.setCaretPosition(sd_write.getLength());
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
+						jtp_write.setText("");
+					}
+				}
+				super.keyReleased(e);
+			}
+		});
+		
+	}
+	public void initScroll() {
+		UIDefaults defaults = UIManager.getDefaults();
+	    defaults.put("ScrollBar.width", new Integer("8"));
+	    jsp_chat.getVerticalScrollBar().setUnitIncrement(20);
+	}
+	public void initGroup() {
+		GroupLayout layout = new GroupLayout(jp_bubble);
+		jp_bubble.setLayout(layout);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(jp_prof,400,400,400)	
+				.addComponent(jsp_chat,400,400,400)
+				.addGroup(layout.createSequentialGroup()
+					.addComponent(jsp_write,310,310,310)
+					.addComponent(jbtn_send,90,90,90)
+				)
+			)
+		);
+		layout.setVerticalGroup(layout.createSequentialGroup()
+			.addComponent(jp_prof,80,80,80)
+			.addComponent(jsp_chat,490,490,490)
+			.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+				.addComponent(jsp_write,50,50,50)
+				.addComponent(jbtn_send,50,50,50)
+			)
+		);
+	}
+	public void initLocation() {
+		Dimension monitor = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension mainPageSize = page.getSize();
+		Point point = page.getLocation();
+		if((monitor.width-(point.x+mainPageSize.width))<getSize().width) {
+			if(monitor.height-(point.y+getSize().height)<0) {
+				setLocation(point.x-(getSize().width+5), monitor.height-getSize().height);
+			}
+			else {
+				setLocation(point.x-(getSize().width+5), point.y);
+			}
+		}
+		else {
+			if(monitor.height-(point.y+getSize().height)<0) {
+				setLocation(point.x+mainPageSize.width+5, monitor.height-getSize().height);
+			}
+			else {
+				setLocation(point.x+mainPageSize.width+5, point.y);
+			}
+		}
+	}
+}
